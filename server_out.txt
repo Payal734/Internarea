@@ -1,0 +1,4 @@
+Server running in development mode on port 5000
+MongoDB Connected Successfully: ac-v5nfmse-shard-00-00.lwa5hd4.mongodb.net
+Email send failed (demo mode — OTP shown on screen): Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-8434acca7ecsm6926193b3a.13 - gsmtp

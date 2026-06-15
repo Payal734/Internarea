@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8fafc">
+  <title>Blog - InternArea Premium</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+ <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/darkmode.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/loaders.css">
+</head>
+<body>
+
+  <div id="pageLoader" class="page-loader">
+    <div class="loader-logo">InternArea</div>
+    <div class="loader-ring"></div>
+    <div class="loader-dots"><div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div></div>
+  </div>
+
+  <div id="scrollProgress" class="scroll-progress-bar"></div>
+  <div id="toastContainer" class="toast-container"></div>
+  <div id="mobileOverlay" class="mobile-overlay"></div>
+
+  <aside id="mobileMenu" class="mobile-menu">
+    <div class="mobile-menu-header">
+      <a href="index-premium.html" class="nav-logo">
+        <svg width="24" height="24" viewBox="0 0 48 48"><defs><linearGradient id="mLGB" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#14b8a6"/><stop offset="100%" style="stop-color:#8b5cf6"/></linearGradient></defs><path d="M24 4L40 12V28C40 37.9 24 44 24 44S8 37.9 8 28V12L24 4Z" fill="url(#mLGB)"/></svg>
+        InternArea
+      </a>
+      <button id="mobileMenuClose" class="mobile-menu-close">&#x2715;</button>
+    </div>
+    <nav class="mobile-menu-links">
+      <a href="index-premium.html"        class="mobile-nav-link">Home</a>
+      <a href="internships-premium.html"  class="mobile-nav-link">Internships</a>
+      <a href="jobs-premium.html"         class="mobile-nav-link">Jobs</a>
+      <a href="courses-premium.html"      class="mobile-nav-link">Courses</a>
+      <a href="pricing.html"              class="mobile-nav-link">Pricing</a>
+      <a href="blog.html"                 class="mobile-nav-link">Blog</a>
+      <a href="referral.html"             class="mobile-nav-link">Referral</a>
+    </nav>
+    <div class="mobile-menu-footer" style="display:flex;flex-direction:column;gap:0.75rem">
+      <a href="login.html" class="btn btn-primary" style="width:100%;text-decoration:none;text-align:center">Sign In</a>
+      <a href="signup.html" class="btn btn-secondary" style="width:100%;text-decoration:none;text-align:center">Create Account</a>
+    </div>
+  </aside>
+
+  <nav id="mainNav">
+    <div class="container">
+      <div class="nav-container">
+        <a href="index-premium.html" class="nav-logo">
+          <svg width="28" height="28" viewBox="0 0 48 48"><defs><linearGradient id="lgB" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#14b8a6"/><stop offset="100%" style="stop-color:#8b5cf6"/></linearGradient></defs>
+          <path d="M24 4L40 12V28C40 37.9 24 44 24 44S8 37.9 8 28V12L24 4Z" fill="url(#lgB)"/>
+          <path d="M24 20L32 24V32C32 36 24 39 24 39S16 36 16 32V24L24 20Z" fill="white" opacity="0.2"/></svg>
+          InternArea
+        </a>
+        <div class="nav-links" id="navLinks">
+          <a href="index-premium.html"       class="nav-link">Home</a>
+          <a href="internships-premium.html" class="nav-link">Internships</a>
+          <a href="jobs-premium.html"        class="nav-link">Jobs</a>
+          <a href="courses-premium.html"     class="nav-link">Courses</a>
+          <a href="pricing.html"             class="nav-link">Pricing</a>
+          <a href="blog.html"                class="nav-link active">Blog</a>
+        </div>
+        <div class="nav-actions">
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">&#x1F319;</button>
+          <a href="signup.html" class="btn btn-secondary btn-small md-hidden" style="text-decoration:none">Sign Up</a>
+          <a href="login.html" class="btn btn-primary btn-small md-hidden" style="text-decoration:none">Sign In</a>
+          <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="gradient-bg-main" style="padding: var(--spacing-3xl) 0; text-align: center;">
+      <div class="container" style="max-width: 700px;">
+        <span class="badge badge-emerald animate-fade-in-down" style="margin-bottom:var(--spacing-lg);display:inline-block">InternArea Blog</span>
+        <h1 class="gradient-text" style="margin-bottom: var(--spacing-lg);">Career Insights &amp; Guides</h1>
+        <p style="font-size: 1.125rem; color: var(--text-light); margin-bottom: var(--spacing-2xl);">Expert advice, internship tips, and industry news to power your career journey.</p>
+
+        <div style="position: relative; max-width: 500px; margin: 0 auto;">
+          <input type="text" id="blogSearch" class="search-input blog-search-input"
+                 placeholder="Search articles, tips, guides..."
+                 style="width: 100%; padding: var(--spacing-md) var(--spacing-xl); border-radius: var(--radius-full); font-size: 1rem;">
+        </div>
+      </div>
+    </section>
+
+    <section class="articles-section" style="padding: var(--spacing-3xl) 0;">
+      <div class="container">
+
+        <div style="display: flex; flex-wrap: wrap; gap: var(--spacing-sm); margin-bottom: var(--spacing-2xl); justify-content: center;">
+          <button class="blog-tab active" data-blog-category="all">All Posts</button>
+          <button class="blog-tab" data-blog-category="career">Career Tips</button>
+          <button class="blog-tab" data-blog-category="internship">Internship Guide</button>
+          <button class="blog-tab" data-blog-category="resume">Resume &amp; CV</button>
+          <button class="blog-tab" data-blog-category="interview">Interview Prep</button>
+          <button class="blog-tab" data-blog-category="industry">Industry News</button>
+        </div>
+
+        <div style="margin-bottom:var(--spacing-xl)">
+          <p style="color:var(--text-light)" id="blogResultsCount">Showing 9 articles</p>
+        </div>
+
+        <div class="articles-grid grid grid-3" id="articlesGrid">
+
+          <div class="card hover-lift stagger-item"
+               data-post data-category="career"
+               data-title="10 Career Skills Every Graduate Needs in 2024"
+               data-summary="Discover the top in-demand skills employers are looking for."
+               style="grid-column: span 2;">
+            <div style="background:linear-gradient(135deg,#14b8a6,#8b5cf6);height:200px;border-radius:var(--radius-md);margin-bottom:var(--spacing-lg);display:flex;align-items:center;justify-content:center;font-size:4rem;">&#x1F680;</div>
+            <div style="display:flex;align-items:center;gap:var(--spacing-sm);margin-bottom:var(--spacing-md)">
+              <span class="badge badge-teal">Career Tips</span>
+              <span style="color:var(--text-light);font-size:0.85rem">June 12, 2024 &bull; 8 min read</span>
+            </div>
+            <h3 style="margin-bottom:var(--spacing-sm)">10 Career Skills Every Graduate Needs in 2024</h3>
+            <p style="color:var(--text-light);margin-bottom:var(--spacing-lg)">Discover the top in-demand skills employers are looking for in fresh graduates entering the job market this year.</p>
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <div style="display:flex;align-items:center;gap:var(--spacing-sm)">
+                <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#14b8a6,#8b5cf6);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.75rem">AK</div>
+                <span style="font-size:0.9rem;color:var(--text-secondary)">Anita Kapoor</span>
+              </div>
+              <a href="#" class="btn btn-primary btn-small ripple-effect">Read More</a>
+            </div>
+          </div>
+
+          <div class="card hover-lift stagger-item"
+               data-post data-category="internship"
+               data-title="How to Ace Your First Internship Interview"
+               data-summary="Step-by-step preparation guide for landing your dream internship interview.">
+            <div style="background:linear-gradient(135deg,#50C878,#14b8a6);height:140px;border-radius:var(--radius-md);margin-bottom:var(--spacing-lg);display:flex;align-items:center;justify-content:center;font-size:3rem;">&#x1F3AF;</div>
+            <span class="badge badge-emerald" style="margin-bottom:var(--spacing-sm);display:inline-block">Internship Guide</span>
+            <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:var(--spacing-sm)">June 8, 2024 &bull; 5 min read</p>
+            <h4 style="margin-bottom:var(--spacing-sm)">How to Ace Your First Internship Interview</h4>
+            <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:var(--spacing-lg)">Step-by-step preparation guide for landing your dream internship interview.</p>
+            <a href="#" class="btn btn-secondary btn-small ripple-effect">Read More</a>
+          </div>
+
+          <div class="card hover-lift stagger-item"
+               data-post data-category="resume"
+               data-title="The Perfect Resume Format for 2024"
+               data-summary="What recruiters actually look for when scanning your resume in the first 6 seconds.">
+            <div style="background:linear-gradient(135deg,#8b5cf6,#ec4899);height:140px;border-radius:var(--radius-md);margin-bottom:var(--spacing-lg);display:flex;align-items:center;justify-content:center;font-size:3rem;">&#x1F4C4;</div>
+            <span class="badge" style="background:rgba(139,92,246,0.12);color:var(--primary-purple);margin-bottom:var(--spacing-sm);display:inline-block">Resume &amp; CV</span>
+            <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:var(--spacing-sm)">June 5, 2024 &bull; 6 min read</p>
+            <h4 style="margin-bottom:var(--spacing-sm)">The Perfect Resume Format for 2024</h4>
+            <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:var(--spacing-lg)">What recruiters actually look for when scanning your resume in the first 6 seconds.</p>
+            <a href="#" class="btn btn-secondary btn-small ripple-effect">Read More</a>
+          </div>
+
+          <div class="card hover-lift stagger-item"
+               data-post data-category="interview"
+               data-title="50 Behavioral Interview Questions and Answers"
+               data-summary="Comprehensive STAR method guide to crushing behavioral questions at FAANG companies.">
+            <div style="background:linear-gradient(135deg,#f59e0b,#ef4444);height:140px;border-radius:var(--radius-md);margin-bottom:var(--spacing-lg);display:flex;align-items:center;justify-content:center;font-size:3rem;">&#x1F4AC;</div>
+            <span class="badge badge-teal" style="margin-bottom:var(--spacing-sm);display:inline-block">Interview Prep</span>
+            <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:var(--spacing-sm)">June 1, 2024 &bull; 12 min read</p>
+            <h4 style="margin-bottom:var(--spacing-sm)">50 Behavioral Interview Questions &amp; Answers</h4>
+            <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:var(--spacing-lg)">Comprehensive STAR method guide to crushing behavioral questions at FAANG companies.</p>
+            <a href="#" class="btn btn-secondary btn-small ripple-effect">Read More</a>
+          </div>
+
+          <div class="card hover-lift stagger-item"
+               data-post data-category="industry"
+               data-title="Top Tech Companies Hiring in Q3 2024"
+               data-summary="Google, Meta, Microsoft, and Stripe are all ramping up hiring.">
+            <div style="background:linear-gradient(135deg,#14b8a6,#50C878);height:140px;border-radius:var(--radius-md);margin-bottom:var(--spacing-lg);display:flex;align-items:center;justify-content:center;font-size:3rem;">&#x1F3E2;</div>
+            <span class="badge badge-emerald" style="margin-bottom:var(--spacing-sm);display:inline-block">Industry News</span>
+            <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:var(--spacing-sm)">May 28, 2024 &bull; 4 min read</p>
+            <h4 style="margin-bottom:var(--spacing-sm)">Top Tech Companies Hiring in Q3 2024</h4>
+            <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:var(--spacing-lg)">Google, Meta, Microsoft, and Stripe are all ramping up hiring — here's what to know.</p>
+            <a href="#" class="btn btn-secondary btn-small ripple-effect">Read More</a>
+          </div>
+
+          <div class="card hover-lift stagger-item"
+               data-post data-category="career"
+               data-title="Salary Negotiation Scripts That Actually Work"
+               data-summary="Real scripts and tactics to negotiate a higher salary without feeling awkward.">
+            <div style="background:linear-gradient(135deg,#8b5cf6,#14b8a6);height:140px;border-radius:var(--radius-md);margin-bottom:var(--spacing-lg);display:flex;align-items:center;justify-content:center;font-size:3rem;">&#x1F4B0;</div>
+            <span class="badge badge-teal" style="margin-bottom:var(--spacing-sm);display:inline-block">Career Tips</span>
+            <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:var(--spacing-sm)">May 24, 2024 &bull; 7 min read</p>
+            <h4 style="margin-bottom:var(--spacing-sm)">Salary Negotiation Scripts That Actually Work</h4>
+            <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:var(--spacing-lg)">Real scripts and tactics to negotiate a higher salary without feeling awkward.</p>
+            <a href="#" class="btn btn-secondary btn-small ripple-effect">Read More</a>
+          </div>
+
+          <div class="card hover-lift stagger-item"
+               data-post data-category="internship"
+               data-title="Remote Internships: The Complete Guide"
+               data-summary="Everything you need to succeed in a remote internship.">
+            <div style="background:linear-gradient(135deg,#3b82f6,#14b8a6);height:140px;border-radius:var(--radius-md);margin-bottom:var(--spacing-lg);display:flex;align-items:center;justify-content:center;font-size:3rem;">&#x1F310;</div>
+            <span class="badge badge-emerald" style="margin-bottom:var(--spacing-sm);display:inline-block">Internship Guide</span>
+            <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:var(--spacing-sm)">May 20, 2024 &bull; 9 min read</p>
+            <h4 style="margin-bottom:var(--spacing-sm)">Remote Internships: The Complete Guide</h4>
+            <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:var(--spacing-lg)">Everything you need to succeed in a remote internship — tools, communication, deliverables.</p>
+            <a href="#" class="btn btn-secondary btn-small ripple-effect">Read More</a>
+          </div>
+
+          <div class="card hover-lift stagger-item"
+               data-post data-category="resume"
+               data-title="LinkedIn Profile Optimisation in 10 Steps"
+               data-summary="Transform your LinkedIn profile to attract recruiters.">
+            <div style="background:linear-gradient(135deg,#0ea5e9,#8b5cf6);height:140px;border-radius:var(--radius-md);margin-bottom:var(--spacing-lg);display:flex;align-items:center;justify-content:center;font-size:3rem;">&#x1F517;</div>
+            <span class="badge" style="background:rgba(139,92,246,0.12);color:var(--primary-purple);margin-bottom:var(--spacing-sm);display:inline-block">Resume &amp; CV</span>
+            <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:var(--spacing-sm)">May 15, 2024 &bull; 5 min read</p>
+            <h4 style="margin-bottom:var(--spacing-sm)">LinkedIn Profile Optimisation in 10 Steps</h4>
+            <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:var(--spacing-lg)">Transform your LinkedIn profile to attract recruiters and get more inbound opportunities.</p>
+            <a href="#" class="btn btn-secondary btn-small ripple-effect">Read More</a>
+          </div>
+
+          <div class="card hover-lift stagger-item"
+               data-post data-category="career"
+               data-title="Building a Personal Brand on Social Media"
+               data-summary="How students and graduates can leverage Twitter, LinkedIn, and GitHub for career growth.">
+            <div style="background:linear-gradient(135deg,#50C878,#8b5cf6);height:140px;border-radius:var(--radius-md);margin-bottom:var(--spacing-lg);display:flex;align-items:center;justify-content:center;font-size:3rem;">&#x26A1;</div>
+            <span class="badge badge-teal" style="margin-bottom:var(--spacing-sm);display:inline-block">Career Tips</span>
+            <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:var(--spacing-sm)">May 10, 2024 &bull; 6 min read</p>
+            <h4 style="margin-bottom:var(--spacing-sm)">Building a Personal Brand on Social Media</h4>
+            <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:var(--spacing-lg)">How students and graduates can leverage Twitter, LinkedIn, and GitHub for career growth.</p>
+            <a href="#" class="btn btn-secondary btn-small ripple-effect">Read More</a>
+          </div>
+
+        </div>
+
+        <div id="blogPagination" class="pagination" style="display:flex;justify-content:center;gap:var(--spacing-sm);margin-top:var(--spacing-3xl)"></div>
+
+      </div>
+    </section>
+
+    <section style="padding: var(--spacing-3xl) 0; background: var(--light-surface);">
+      <div class="container" style="max-width: 600px; text-align: center;">
+        <div class="card reveal" style="padding: var(--spacing-3xl);">
+          <div style="font-size:3rem;margin-bottom:var(--spacing-lg)">&#x1F4EC;</div>
+          <h2 style="margin-bottom:var(--spacing-md)">Stay in the Loop</h2>
+          <p style="color: var(--text-light); margin-bottom: var(--spacing-xl);">Get the latest career insights, job alerts, and exclusive tips delivered to your inbox every week.</p>
+          <div style="display: flex; gap: var(--spacing-sm); flex-wrap: wrap;">
+            <input type="email" placeholder="Enter your email address..."
+                   class="search-input" style="flex:1;min-width:200px;border-radius:var(--radius-full)">
+            <button class="btn btn-primary ripple-effect">Subscribe Free</button>
+          </div>
+          <p style="font-size:0.8rem;color:var(--text-light);margin-top:var(--spacing-md)">No spam. Unsubscribe anytime.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section"><h4>About InternArea</h4><p style="color:#cbd5e1">Premium career platform for ambitious professionals.</p></div>
+        <div class="footer-section"><h4>Browse</h4><ul><li><a href="internships-premium.html">Internships</a></li><li><a href="jobs-premium.html">Jobs</a></li><li><a href="courses-premium.html">Courses</a></li></ul></div>
+        <div class="footer-section"><h4>Company</h4><ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li><li><a href="#">Privacy</a></li></ul></div>
+        <div class="footer-section"><h4>More</h4><ul><li><a href="blog.html">Blog</a></li><li><a href="referral.html">Referral</a></li><li><a href="pricing.html">Pricing</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2024 InternArea Premium. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <button class="btn-scroll-to-top" id="scrollTop" aria-label="Back to top">&#x2191;</button>
+
+  <script src="js/app.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/mobile-menu.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/counter.js"></script>
+  <script src="js/blog.js"></script>
+</body>
+</html>

@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8fafc">
+  <title>Courses - InternArea Premium</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/darkmode.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/loaders.css">
+</head>
+<body>
+
+  <div id="pageLoader" class="page-loader">
+    <div class="loader-logo">InternArea</div>
+    <div class="loader-ring"></div>
+    <div class="loader-dots"><div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div></div>
+  </div>
+
+  <div id="scrollProgress" class="scroll-progress-bar"></div>
+  <div id="toastContainer" class="toast-container"></div>
+  <div id="mobileOverlay" class="mobile-overlay"></div>
+
+  <aside id="mobileMenu" class="mobile-menu">
+    <div class="mobile-menu-header">
+      <a href="index-premium.html" class="nav-logo">
+        <svg width="24" height="24" viewBox="0 0 48 48"><defs><linearGradient id="mLG4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#14b8a6"/><stop offset="100%" style="stop-color:#8b5cf6"/></linearGradient></defs><path d="M24 4L40 12V28C40 37.9 24 44 24 44S8 37.9 8 28V12L24 4Z" fill="url(#mLG4)"/></svg>
+        InternArea
+      </a>
+      <button id="mobileMenuClose" class="mobile-menu-close">✕</button>
+    </div>
+    <nav class="mobile-menu-links">
+      <a href="index-premium.html"        class="mobile-nav-link">🏠 Home</a>
+      <a href="internships-premium.html"  class="mobile-nav-link">🎓 Internships</a>
+      <a href="jobs-premium.html"         class="mobile-nav-link">💼 Jobs</a>
+      <a href="courses-premium.html"      class="mobile-nav-link">📚 Courses</a>
+      <a href="pricing.html"              class="mobile-nav-link">💎 Pricing</a>
+      <a href="blog.html"                 class="mobile-nav-link">✍️ Blog</a>
+      <a href="referral.html"             class="mobile-nav-link">🎁 Referral</a>
+      <a href="resume.html"              class="mobile-nav-link">📄 Resume Builder</a>
+    </nav>
+    <div class="mobile-menu-footer" style="display:flex;flex-direction:column;gap:0.75rem">
+      <a href="login.html" class="btn btn-primary" style="width:100%;text-decoration:none;text-align:center">Sign In</a>
+      <a href="signup.html" class="btn btn-secondary" style="width:100%;text-decoration:none;text-align:center">Create Account</a>
+    </div>
+  </aside>
+
+  <nav id="mainNav">
+    <div class="container">
+      <div class="nav-container">
+        <a href="index-premium.html" class="nav-logo">
+          <svg width="28" height="28" viewBox="0 0 48 48"><defs><linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#14b8a6"/><stop offset="100%" style="stop-color:#8b5cf6"/></linearGradient></defs>
+          <path d="M24 4L40 12V28C40 37.9 24 44 24 44S8 37.9 8 28V12L24 4Z" fill="url(#logoGrad)"/>
+          <path d="M24 20L32 24V32C32 36 24 39 24 39S16 36 16 32V24L24 20Z" fill="white" opacity="0.2"/></svg>
+          InternArea
+        </a>
+        <div class="nav-links" id="navLinks">
+          <a href="index-premium.html"       class="nav-link">Home</a>
+          <a href="internships-premium.html" class="nav-link">Internships</a>
+          <a href="jobs-premium.html"        class="nav-link">Jobs</a>
+          <a href="courses-premium.html"     class="nav-link active">Courses</a>
+          <a href="pricing.html"             class="nav-link">Pricing</a>
+          <a href="blog.html"                class="nav-link">Blog</a>
+          <a href="resume.html"              class="nav-link">📄 Resume</a>
+        </div>
+        <div class="nav-actions">
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+          <a href="signup.html" class="btn btn-secondary btn-small md-hidden" style="text-decoration:none">Sign Up</a>
+          <a href="login.html" class="btn btn-primary btn-small md-hidden" style="text-decoration:none">Sign In</a>
+          <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="gradient-bg-main" style="padding: var(--spacing-3xl) 0; border-bottom: 1px solid var(--border-light);">
+      <div class="container">
+        <div class="animate-fade-in-down">
+          <div style="display:flex;gap:var(--spacing-sm);margin-bottom:var(--spacing-md)">
+            <span class="badge badge-emerald">📚 500+ Premium Courses</span>
+          </div>
+          <h1 class="gradient-text-emerald" style="margin-bottom: var(--spacing-md);">Premium Courses</h1>
+          <p style="font-size: 1.125rem; color: var(--text-light); max-width: 600px;">Master in-demand skills with world-class instruction. Learn from industry experts and earn recognized certifications.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Category Pills -->
+    <section style="padding: var(--spacing-xl) 0; border-bottom: 1px solid var(--border-light);">
+      <div class="container">
+        <div style="display:flex;gap:var(--spacing-md);align-items:center;flex-wrap:wrap;">
+          <input type="text" class="search-input" id="courseSearch" placeholder="Search courses…" data-search style="flex:1;min-width:200px">
+          <div class="filter-pills">
+            <button class="filter-pill active" data-course-category="all">All</button>
+            <button class="filter-pill" data-course-category="web">Web Dev</button>
+            <button class="filter-pill" data-course-category="data">Data Science</button>
+            <button class="filter-pill" data-course-category="mobile">Mobile</button>
+            <button class="filter-pill" data-course-category="cloud">Cloud</button>
+            <button class="filter-pill" data-course-category="design">Design</button>
+            <button class="filter-pill" data-course-category="product">Product</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding: var(--spacing-3xl) 0;">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: 240px 1fr; gap: var(--spacing-3xl);">
+
+          <aside style="height: fit-content; position: sticky; top: 100px;" class="reveal-left">
+            <h3 style="margin-top: 0; font-size: 1.25rem;">Filters</h3>
+
+            <div style="margin-bottom: var(--spacing-xl);">
+              <h4 style="margin-bottom: var(--spacing-md); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-light);">Level</h4>
+              <div style="display:flex;flex-direction:column;gap:var(--spacing-sm)">
+                <label style="display:flex;align-items:center;gap:var(--spacing-sm);cursor:pointer"><input type="radio" name="level" data-course-level value="all" checked> <span>All Levels</span></label>
+                <label style="display:flex;align-items:center;gap:var(--spacing-sm);cursor:pointer"><input type="radio" name="level" data-course-level value="beginner"> <span>Beginner</span></label>
+                <label style="display:flex;align-items:center;gap:var(--spacing-sm);cursor:pointer"><input type="radio" name="level" data-course-level value="intermediate"> <span>Intermediate</span></label>
+                <label style="display:flex;align-items:center;gap:var(--spacing-sm);cursor:pointer"><input type="radio" name="level" data-course-level value="advanced"> <span>Advanced</span></label>
+              </div>
+            </div>
+
+            <div style="margin-bottom: var(--spacing-xl);">
+              <h4 style="margin-bottom: var(--spacing-md); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-light);">Duration</h4>
+              <div style="display:flex;flex-direction:column;gap:var(--spacing-sm)">
+                <label style="display:flex;align-items:center;gap:var(--spacing-sm);cursor:pointer"><input type="checkbox" data-filter-key="duration" data-filter-value="short"> <span>Under 4 weeks</span></label>
+                <label style="display:flex;align-items:center;gap:var(--spacing-sm);cursor:pointer"><input type="checkbox" data-filter-key="duration" data-filter-value="medium"> <span>4–8 weeks</span></label>
+                <label style="display:flex;align-items:center;gap:var(--spacing-sm);cursor:pointer"><input type="checkbox" data-filter-key="duration" data-filter-value="long"> <span>8+ weeks</span></label>
+              </div>
+            </div>
+
+            <div style="margin-bottom: var(--spacing-xl);">
+              <h4 style="margin-bottom: var(--spacing-md); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-light);">Rating</h4>
+              <div style="display:flex;flex-direction:column;gap:var(--spacing-sm)">
+                <label style="display:flex;align-items:center;gap:var(--spacing-sm);cursor:pointer"><input type="radio" name="rating" data-course-rating value="4.8"> <span>4.8+ ⭐</span></label>
+                <label style="display:flex;align-items:center;gap:var(--spacing-sm);cursor:pointer"><input type="radio" name="rating" data-course-rating value="4.5"> <span>4.5+ ⭐</span></label>
+                <label style="display:flex;align-items:center;gap:var(--spacing-sm);cursor:pointer"><input type="radio" name="rating" data-course-rating value="all" checked> <span>All Ratings</span></label>
+              </div>
+            </div>
+
+            <div>
+              <h4 style="margin-bottom: var(--spacing-md); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-light);">Sort By</h4>
+              <select data-course-sort style="width:100%;padding:0.625rem var(--spacing-md);border:1px solid var(--border-light);border-radius:10px;background:var(--light-card);font-family:var(--font-body)">
+                <option value="popular">Most Popular</option>
+                <option value="rating">Highest Rated</option>
+                <option value="newest">Newest First</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+              </select>
+            </div>
+          </aside>
+
+          <!-- Courses Grid -->
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--spacing-xl)">
+              <h3 style="margin:0" data-results-count data-type="Courses">Showing 8 Courses</h3>
+            </div>
+
+            <div class="grid grid-2 courses-grid" data-courses-grid>
+              <div class="card stagger-item hover-lift gradient-border"
+                   data-course data-category="web" data-level="intermediate" data-rating="4.8" data-price="199" data-students="12450" data-duration="medium" data-title="Full Stack Web Development" data-skills="React Node JavaScript">
+                <div style="height:180px;background:linear-gradient(135deg,#14b8a6,#8b5cf6);border-radius:14px;margin-bottom:var(--spacing-lg);display:flex;align-items:center;justify-content:center;font-size:3rem">🌐</div>
+                <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:var(--spacing-sm)">
+                  <span class="badge">Intermediate</span>
+                  <span class="badge badge-emerald">Best Seller</span>
+                </div>
+                <h4 style="margin: var(--spacing-sm) 0;">Full Stack Web Development</h4>
+                <p style="color:var(--text-light);margin-bottom:var(--spacing-lg);font-size:0.9rem">Master React, Node.js, and modern web technologies. Build production-ready applications from scratch.</p>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--spacing-lg)">
+                  <div>
+                    <p style="margin:0;font-weight:700;font-size:1.15rem">$199</p>
+                    <p style="margin:0;color:var(--text-light);font-size:0.8rem;text-decoration:line-through">$499</p>
+                  </div>
+                  <div style="text-align:right">
+                    <p style="margin:0;font-weight:700;color:#f59e0b">⭐ 4.8</p>
+                    <p style="margin:0;color:var(--text-light);font-size:0.8rem">2,450 reviews</p>
+                  </div>
+                </div>
+                <button class="btn btn-primary ripple-effect" style="width:100%">Enroll Now — 60% Off</button>
+              </div>
+
+              <div class="card stagger-item hover-lift gradient-border"
+                   data-course data-category="data" data-level="advanced" data-rating="4.9" data-price="249" data-students="8900" data-duration="long" data-title="Machine Learning Mastery" data-skills="Python ML AI Deep Learning">
+                <div style="height:180px;background:linear-gradient(135deg,#50C878,#14b8a6);border-radius:14px;margin-bottom:var(--spacing-lg);display:flex;align-items:center;justify-content:center;font-size:3rem">🤖</div>
+                <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:var(--spacing-sm)">
+                  <span class="badge">Advanced</span>
+                  <span class="badge badge-emerald">Top Rated</span>
+                </div>
+                <h4 style="margin: var(--spacing-sm) 0;">Machine Learning Mastery</h4>
+                <p style="color:var(--text-light);margin-bottom:var(--spacing-lg);font-size:0.9rem">Learn ML algorithms, deep learning, and AI. Build intelligent systems from the ground up.</p>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--spacing-lg)">
+                  <div>
+                    <p style="margin:0;font-weight:700;font-size:1.15rem">$249</p>
+                    <p style="margin:0;color:var(--text-light);font-size:0.8rem;text-decoration:line-through">$599</p>
+                  </div>
+                  <div style="text-align:right">
+                    <p style="margin:0;font-weight:700;color:#f59e0b">⭐ 4.9</p>
+                    <p style="margin:0;color:var(--text-light);font-size:0.8rem">1,890 reviews</p>
+                  </div>
+                </div>
+                <button class="btn btn-primary ripple-effect" style="width:100%">Enroll Now — 58% Off</button>
+              </div>
+
+              <div class="card stagger-item hover-lift gradient-border"
+                   data-course data-category="cloud" data-level="intermediate" data-rating="4.7" data-price="179" data-students="6200" data-duration="medium" data-title="Cloud Architecture with AWS" data-skills="AWS Cloud DevOps Infrastructure">
+                <div style="height:180px;background:linear-gradient(135deg,#8b5cf6,#50C878);border-radius:14px;margin-bottom:var(--spacing-lg);display:flex;align-items:center;justify-content:center;font-size:3rem">☁️</div>
+                <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:var(--spacing-sm)">
+                  <span class="badge">Intermediate</span>
+                  <span class="badge">Certification</span>
+                </div>
+                <h4 style="margin: var(--spacing-sm) 0;">Cloud Architecture with AWS</h4>
+                <p style="color:var(--text-light);margin-bottom:var(--spacing-lg);font-size:0.9rem">Deploy, scale, and manage applications on AWS. Get certified as an AWS Solutions Architect.</p>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--spacing-lg)">
+                  <div>
+                    <p style="margin:0;font-weight:700;font-size:1.15rem">$179</p>
+                    <p style="margin:0;color:var(--text-light);font-size:0.8rem;text-decoration:line-through">$399</p>
+                  </div>
+                  <div style="text-align:right">
+                    <p style="margin:0;font-weight:700;color:#f59e0b">⭐ 4.7</p>
+                    <p style="margin:0;color:var(--text-light);font-size:0.8rem">1,540 reviews</p>
+                  </div>
+                </div>
+                <button class="btn btn-primary ripple-effect" style="width:100%">Enroll Now — 55% Off</button>
+              </div>
+
+              <div class="card stagger-item hover-lift gradient-border"
+                   data-course data-category="product" data-level="beginner" data-rating="4.9" data-price="299" data-students="4800" data-duration="long" data-title="Product Management Bootcamp" data-skills="Strategy Roadmapping Leadership Analytics">
+                <div style="height:180px;background:linear-gradient(135deg,#50C878,#8b5cf6);border-radius:14px;margin-bottom:var(--spacing-lg);display:flex;align-items:center;justify-content:center;font-size:3rem">📋</div>
+                <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:var(--spacing-sm)">
+                  <span class="badge">Beginner friendly</span>
+                  <span class="badge badge-emerald">New</span>
+                </div>
+                <h4 style="margin: var(--spacing-sm) 0;">Product Management Bootcamp</h4>
+                <p style="color:var(--text-light);margin-bottom:var(--spacing-lg);font-size:0.9rem">Learn product strategy, roadmapping, and leadership. Land a PM role at top companies.</p>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--spacing-lg)">
+                  <div>
+                    <p style="margin:0;font-weight:700;font-size:1.15rem">$299</p>
+                    <p style="margin:0;color:var(--text-light);font-size:0.8rem;text-decoration:line-through">$699</p>
+                  </div>
+                  <div style="text-align:right">
+                    <p style="margin:0;font-weight:700;color:#f59e0b">⭐ 4.9</p>
+                    <p style="margin:0;color:var(--text-light);font-size:0.8rem">980 reviews</p>
+                  </div>
+                </div>
+                <button class="btn btn-primary ripple-effect" style="width:100%">Enroll Now — 57% Off</button>
+              </div>
+
+              <div class="card stagger-item hover-lift gradient-border"
+                   data-course data-category="mobile" data-level="intermediate" data-rating="4.7" data-price="189" data-students="3900" data-duration="medium" data-title="iOS App Development" data-skills="Swift iOS Xcode UIKit SwiftUI">
+                <div style="height:180px;background:linear-gradient(135deg,#14b8a6,#50C878);border-radius:14px;margin-bottom:var(--spacing-lg);display:flex;align-items:center;justify-content:center;font-size:3rem">📱</div>
+                <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:var(--spacing-sm)">
+                  <span class="badge">Intermediate</span>
+                </div>
+                <h4 style="margin: var(--spacing-sm) 0;">iOS App Development</h4>
+                <p style="color:var(--text-light);margin-bottom:var(--spacing-lg);font-size:0.9rem">Build beautiful iOS apps using Swift and SwiftUI. Deploy to the App Store and monetize your ideas.</p>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--spacing-lg)">
+                  <div>
+                    <p style="margin:0;font-weight:700;font-size:1.15rem">$189</p>
+                    <p style="margin:0;color:var(--text-light);font-size:0.8rem;text-decoration:line-through">$449</p>
+                  </div>
+                  <div style="text-align:right">
+                    <p style="margin:0;font-weight:700;color:#f59e0b">⭐ 4.7</p>
+                    <p style="margin:0;color:var(--text-light);font-size:0.8rem">1,230 reviews</p>
+                  </div>
+                </div>
+                <button class="btn btn-primary ripple-effect" style="width:100%">Enroll Now — 58% Off</button>
+              </div>
+
+              <div class="card stagger-item hover-lift gradient-border"
+                   data-course data-category="design" data-level="beginner" data-rating="4.8" data-price="149" data-students="7600" data-duration="short" data-title="UI/UX Design Fundamentals" data-skills="Figma Design Systems UX Research Prototyping">
+                <div style="height:180px;background:linear-gradient(135deg,#FF5A5F,#8b5cf6);border-radius:14px;margin-bottom:var(--spacing-lg);display:flex;align-items:center;justify-content:center;font-size:3rem">🎨</div>
+                <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:var(--spacing-sm)">
+                  <span class="badge">Beginner</span>
+                  <span class="badge badge-emerald">Popular</span>
+                </div>
+                <h4 style="margin: var(--spacing-sm) 0;">UI/UX Design Fundamentals</h4>
+                <p style="color:var(--text-light);margin-bottom:var(--spacing-lg);font-size:0.9rem">Master Figma, design thinking, and UX research. Create stunning interfaces with professional skills.</p>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--spacing-lg)">
+                  <div>
+                    <p style="margin:0;font-weight:700;font-size:1.15rem">$149</p>
+                    <p style="margin:0;color:var(--text-light);font-size:0.8rem;text-decoration:line-through">$349</p>
+                  </div>
+                  <div style="text-align:right">
+                    <p style="margin:0;font-weight:700;color:#f59e0b">⭐ 4.8</p>
+                    <p style="margin:0;color:var(--text-light);font-size:0.8rem">3,180 reviews</p>
+                  </div>
+                </div>
+                <button class="btn btn-primary ripple-effect" style="width:100%">Enroll Now — 57% Off</button>
+              </div>
+
+              <div class="card stagger-item hover-lift gradient-border"
+                   data-course data-category="data" data-level="beginner" data-rating="4.6" data-price="129" data-students="5400" data-duration="short" data-title="Data Analytics with Python" data-skills="Python Pandas NumPy Matplotlib SQL">
+                <div style="height:180px;background:linear-gradient(135deg,#0078d4,#50C878);border-radius:14px;margin-bottom:var(--spacing-lg);display:flex;align-items:center;justify-content:center;font-size:3rem">📊</div>
+                <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:var(--spacing-sm)">
+                  <span class="badge">Beginner</span>
+                </div>
+                <h4 style="margin: var(--spacing-sm) 0;">Data Analytics with Python</h4>
+                <p style="color:var(--text-light);margin-bottom:var(--spacing-lg);font-size:0.9rem">Analyze and visualize data with Python, Pandas, and SQL. Perfect entry point into data science.</p>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--spacing-lg)">
+                  <div>
+                    <p style="margin:0;font-weight:700;font-size:1.15rem">$129</p>
+                    <p style="margin:0;color:var(--text-light);font-size:0.8rem;text-decoration:line-through">$299</p>
+                  </div>
+                  <div style="text-align:right">
+                    <p style="margin:0;font-weight:700;color:#f59e0b">⭐ 4.6</p>
+                    <p style="margin:0;color:var(--text-light);font-size:0.8rem">2,010 reviews</p>
+                  </div>
+                </div>
+                <button class="btn btn-primary ripple-effect" style="width:100%">Enroll Now — 57% Off</button>
+              </div>
+
+              <div class="card stagger-item hover-lift gradient-border"
+                   data-course data-category="web" data-level="beginner" data-rating="4.7" data-price="99" data-students="9800" data-duration="short" data-title="JavaScript Fundamentals" data-skills="JavaScript ES6 DOM APIs Browser">
+                <div style="height:180px;background:linear-gradient(135deg,#F7DF1E,#14b8a6);border-radius:14px;margin-bottom:var(--spacing-lg);display:flex;align-items:center;justify-content:center;font-size:3rem">⚡</div>
+                <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:var(--spacing-sm)">
+                  <span class="badge">Beginner</span>
+                  <span class="badge badge-emerald">Free Preview</span>
+                </div>
+                <h4 style="margin: var(--spacing-sm) 0;">JavaScript Fundamentals</h4>
+                <p style="color:var(--text-light);margin-bottom:var(--spacing-lg);font-size:0.9rem">Go from zero to confident with JavaScript. Modern ES6+, async programming, and real-world projects.</p>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--spacing-lg)">
+                  <div>
+                    <p style="margin:0;font-weight:700;font-size:1.15rem">$99</p>
+                    <p style="margin:0;color:var(--text-light);font-size:0.8rem;text-decoration:line-through">$249</p>
+                  </div>
+                  <div style="text-align:right">
+                    <p style="margin:0;font-weight:700;color:#f59e0b">⭐ 4.7</p>
+                    <p style="margin:0;color:var(--text-light);font-size:0.8rem">4,320 reviews</p>
+                  </div>
+                </div>
+                <button class="btn btn-primary ripple-effect" style="width:100%">Enroll Now — 60% Off</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Learning Paths -->
+    <section style="padding: var(--spacing-3xl) 0; background: var(--light-surface);">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: var(--spacing-3xl);" class="reveal">
+          <h2 class="gradient-text">Structured Learning Paths</h2>
+          <p style="color: var(--text-light); font-size: 1.125rem;">Complete curricula designed by industry experts</p>
+        </div>
+        <div class="grid grid-3">
+          <div class="card stagger-item hover-lift gradient-border">
+            <div style="font-size: 2.5rem; margin-bottom: var(--spacing-lg);">🌐</div>
+            <h4 style="margin-top: 0;">Web Developer Path</h4>
+            <p style="color: var(--text-light); margin-bottom: var(--spacing-md);">8 courses · 240+ hours · Job-ready skills</p>
+            <div class="progress-bar-wrapper" style="margin-bottom:var(--spacing-lg)">
+              <div class="progress-bar-fill" style="width:0%" data-progress="75"></div>
+            </div>
+            <button class="btn btn-emerald ripple-effect" style="width: 100%;">Start Path</button>
+          </div>
+          <div class="card stagger-item hover-lift gradient-border">
+            <div style="font-size: 2.5rem; margin-bottom: var(--spacing-lg);">📊</div>
+            <h4 style="margin-top: 0;">Data Science Path</h4>
+            <p style="color: var(--text-light); margin-bottom: var(--spacing-md);">10 courses · 300+ hours · Real projects</p>
+            <div class="progress-bar-wrapper" style="margin-bottom:var(--spacing-lg)">
+              <div class="progress-bar-fill" style="width:0%" data-progress="60"></div>
+            </div>
+            <button class="btn btn-emerald ripple-effect" style="width: 100%;">Start Path</button>
+          </div>
+          <div class="card stagger-item hover-lift gradient-border">
+            <div style="font-size: 2.5rem; margin-bottom: var(--spacing-lg);">☁️</div>
+            <h4 style="margin-top: 0;">Cloud & DevOps Path</h4>
+            <p style="color: var(--text-light); margin-bottom: var(--spacing-md);">6 courses · 180+ hours · Certifications</p>
+            <div class="progress-bar-wrapper" style="margin-bottom:var(--spacing-lg)">
+              <div class="progress-bar-fill" style="width:0%" data-progress="85"></div>
+            </div>
+            <button class="btn btn-emerald ripple-effect" style="width: 100%;">Start Path</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gradient-bg-accent" style="padding: var(--spacing-3xl) 0; color: white; text-align: center;">
+      <div class="container" style="max-width: 700px;">
+        <h2 style="color: white; margin-bottom: var(--spacing-lg);">Start Learning Today</h2>
+        <p style="font-size: 1.125rem; margin-bottom: var(--spacing-2xl);">Join thousands of professionals upskilling with our premium courses.</p>
+        <button class="btn ripple-effect" style="background: white; color: var(--primary-teal); font-weight: 700;">Explore All Courses</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section"><h4>About InternArea</h4><p style="color:#cbd5e1">Premium career platform for ambitious professionals.</p></div>
+        <div class="footer-section"><h4>Browse</h4><ul><li><a href="internships-premium.html">Internships</a></li><li><a href="jobs-premium.html">Jobs</a></li><li><a href="courses-premium.html">Courses</a></li></ul></div>
+        <div class="footer-section"><h4>Resources</h4><ul><li><a href="blog.html">Blog</a></li><li><a href="#">Career Guide</a></li></ul></div>
+        <div class="footer-section"><h4>Company</h4><ul><li><a href="#">About</a></li><li><a href="referral.html">Referral</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2024 InternArea Premium. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <button class="btn-scroll-to-top" id="scrollTop" aria-label="Back to top">↑</button>
+
+  <!-- Course Enroll Modal -->
+  <div id="courseModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:10000;background:rgba(0,0,0,0.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);overflow-y:auto;overflow-x:hidden">
+    <div style="display:flex;align-items:flex-start;justify-content:center;min-height:100%;padding:1.5rem 1rem">
+    <div style="background:var(--light-card);border-radius:20px;width:100%;max-width:500px;padding:2rem;position:relative;box-shadow:0 25px 60px rgba(0,0,0,0.25);flex-shrink:0;margin:auto 0">
+      <button onclick="closeCourseModal()" style="position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--text-muted);line-height:1">✕</button>
+      <div style="margin-bottom:1.5rem">
+        <h3 id="modalCourseTitle" style="font-family:'Outfit',sans-serif;margin:0 0 0.25rem;font-size:1.4rem">Enroll in Course</h3>
+        <p id="modalCoursePrice" style="color:var(--primary-teal);font-weight:700;font-size:1.1rem;margin:0.25rem 0"></p>
+      </div>
+      <!-- YouTube Study Link -->
+      <div id="modalYoutubeBanner" style="background:rgba(255,0,0,0.06);border:1px solid rgba(255,0,0,0.2);border-radius:12px;padding:0.875rem 1rem;margin-bottom:1.25rem;display:flex;align-items:center;gap:0.75rem">
+        <span style="font-size:1.5rem">▶️</span>
+        <div style="flex:1">
+          <div style="font-weight:600;font-size:0.875rem;color:var(--text-dark)">Free Preview on YouTube</div>
+          <div style="font-size:0.8rem;color:var(--text-muted)">Watch free lessons before enrolling</div>
+        </div>
+        <a id="modalYoutubeLink" href="#" target="_blank" rel="noopener" style="padding:0.4rem 0.875rem;background:#FF0000;color:#fff;border-radius:8px;font-size:0.8rem;font-weight:600;text-decoration:none;white-space:nowrap">Watch Free →</a>
+      </div>
+      <form id="courseEnrollForm" novalidate>
+        <div style="margin-bottom:1rem">
+          <label style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:0.4rem;color:var(--text-dark)">Full Name *</label>
+          <input type="text" id="enrollName" placeholder="Your full name" style="width:100%;padding:0.75rem 1rem;border:1.5px solid var(--border-light);border-radius:10px;font-family:inherit;font-size:0.9rem;background:var(--light-bg);color:var(--text-dark);outline:none;box-sizing:border-box" required>
+        </div>
+        <div style="margin-bottom:1rem">
+          <label style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:0.4rem;color:var(--text-dark)">Email Address *</label>
+          <input type="email" id="enrollEmail" placeholder="you@example.com" style="width:100%;padding:0.75rem 1rem;border:1.5px solid var(--border-light);border-radius:10px;font-family:inherit;font-size:0.9rem;background:var(--light-bg);color:var(--text-dark);outline:none;box-sizing:border-box" required>
+        </div>
+        <div style="margin-bottom:1rem">
+          <label style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:0.4rem;color:var(--text-dark)">Your Background</label>
+          <select id="enrollBackground" style="width:100%;padding:0.75rem 1rem;border:1.5px solid var(--border-light);border-radius:10px;font-family:inherit;font-size:0.9rem;background:var(--light-bg);color:var(--text-dark);outline:none;box-sizing:border-box">
+            <option value="">Select your background</option>
+            <option value="student">Student</option>
+            <option value="fresher">Fresher / Recent Graduate</option>
+            <option value="working">Working Professional</option>
+            <option value="career-change">Career Changer</option>
+          </select>
+        </div>
+        <div style="margin-bottom:1.5rem;padding:1rem;background:rgba(20,184,166,0.06);border:1px solid rgba(20,184,166,0.2);border-radius:10px">
+          <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6">
+            ✅ Lifetime access &nbsp; ✅ Certificate on completion &nbsp; ✅ 30-day money-back guarantee
+          </div>
+        </div>
+        <button type="submit" id="enrollSubmitBtn" style="width:100%;padding:0.9rem;border:none;border-radius:12px;background:linear-gradient(135deg,#50C878,#14b8a6);color:#fff;font-weight:700;font-size:1rem;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:0.5rem;transition:all 0.2s">
+          <span id="enrollBtnText">Enroll Now →</span>
+          <span id="enrollBtnSpinner" style="display:none;width:18px;height:18px;border:2px solid rgba(255,255,255,0.4);border-top-color:#fff;border-radius:50%;animation:cspn 0.7s linear infinite"></span>
+        </button>
+      </form>
+      <div id="enrollSuccess" style="display:none;text-align:center;padding:1rem 0">
+        <div style="width:72px;height:72px;background:linear-gradient(135deg,#50C878,#14b8a6);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:2rem">🎓</div>
+        <h3 style="font-family:'Outfit',sans-serif;margin:0 0 0.5rem">Enrolled Successfully!</h3>
+        <p style="color:var(--text-light);font-size:0.9rem">Check your email for course access details. Happy learning!</p>
+        <a id="enrollYoutubeBtn" href="#" target="_blank" rel="noopener" style="display:inline-block;margin-top:1rem;padding:0.75rem 1.5rem;border-radius:10px;background:#FF0000;color:#fff;font-weight:600;text-decoration:none">▶️ Start Watching on YouTube</a>
+        <br>
+        <button onclick="closeCourseModal()" style="margin-top:0.75rem;padding:0.6rem 1.5rem;border:none;border-radius:10px;background:var(--light-bg);border:1px solid var(--border-light);color:var(--text-dark);font-weight:500;cursor:pointer;font-family:inherit">Close</button>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/mobile-menu.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/counter.js"></script>
+  <script src="js/course-search.js"></script>
+  <script src="js/filter.js"></script>
+  <script src="js/auth-state.js"></script>
+  <style>
+    @keyframes cspn { to { transform:rotate(360deg); } }
+
+    /* ── Modal base ── */
+    #courseModal input, #courseModal select, #courseModal textarea {
+      transition: border-color 0.2s;
+    }
+    #courseModal input:focus, #courseModal select:focus, #courseModal textarea:focus {
+      border-color: var(--primary-teal) !important;
+      box-shadow: 0 0 0 3px rgba(20,184,166,0.12);
+      outline: none;
+    }
+    body.dark-mode #courseModal > div > div { background: #1e293b !important; }
+    body.dark-mode #courseModal input,
+    body.dark-mode #courseModal select,
+    body.dark-mode #courseModal textarea {
+      background: #0f172a !important; color: #e2e8f0 !important; border-color: #334155 !important;
+    }
+    body.dark-mode #courseModal label { color: #e2e8f0 !important; }
+    body.dark-mode #courseModal h3, body.dark-mode #courseModal p { color: #f1f5f9 !important; }
+
+    /* ── Course grid responsive ── */
+    @media (max-width:900px) {
+      .course-layout { grid-template-columns:1fr !important; }
+      .course-sidebar { display:none; }
+    }
+
+    /* ── Modal full responsive ── */
+    @media (max-width:600px) {
+      #courseModal > div { padding:0.75rem 0.5rem !important; }
+      #courseModal > div > div {
+        padding:1.25rem 1rem !important;
+        border-radius:14px !important;
+        max-width:100% !important;
+      }
+      #courseModal input,
+      #courseModal select { font-size:16px !important; padding:0.65rem 0.75rem !important; }
+      #courseModal h3 { font-size:1.15rem !important; }
+      #courseModal button[type="submit"] { font-size:0.95rem !important; padding:0.8rem !important; }
+      /* YouTube banner responsive */
+      #modalYoutubeBanner { flex-wrap:wrap !important; gap:0.5rem !important; }
+      #modalYoutubeBanner a { width:100% !important; text-align:center !important; }
+    }
+
+    @media (max-width:380px) {
+      #courseModal > div > div { padding:1rem 0.75rem !important; }
+    }
+
+    /* ── Hero responsive ── */
+    @media (max-width:768px) {
+      section h1 { font-size:2rem !important; }
+      section p  { font-size:1rem !important; }
+    }
+    @media (max-width:480px) {
+      section h1 { font-size:1.6rem !important; }
+      .card      { padding:1.25rem !important; }
+    }
+
+    /* ── Search bar responsive ── */
+    @media (max-width:640px) {
+      .search-container { flex-direction:column !important; gap:0.75rem !important; }
+      .search-filters   { width:100% !important; flex-wrap:wrap !important; }
+    }
+  </style>
+  <script>
+    /* Animate progress bars when visible */
+    const bars = document.querySelectorAll('.progress-bar-fill[data-progress]');
+    const barObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.width = e.target.dataset.progress + '%';
+          barObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    bars.forEach(b => barObs.observe(b));
+
+    /* YouTube links per course title */
+    const ytLinks = {
+      'Full Stack Web Development':    'https://www.youtube.com/results?search_query=full+stack+web+development+course',
+      'Machine Learning Mastery':      'https://www.youtube.com/results?search_query=machine+learning+full+course',
+      'Cloud Architecture with AWS':   'https://www.youtube.com/results?search_query=aws+cloud+architecture+course',
+      'Product Management Bootcamp':   'https://www.youtube.com/results?search_query=product+management+course',
+      'iOS App Development':           'https://www.youtube.com/results?search_query=ios+swift+development+course',
+      'UI/UX Design Fundamentals':     'https://www.youtube.com/results?search_query=ui+ux+design+figma+course',
+      'Data Analytics with Python':    'https://www.youtube.com/results?search_query=data+analytics+python+pandas+course',
+      'JavaScript Fundamentals':       'https://www.youtube.com/results?search_query=javascript+fundamentals+course',
+    };
+
+    /* Add YouTube button to every course card */
+    document.querySelectorAll('[data-course]').forEach(card => {
+      const title  = card.dataset.title || '';
+      const ytUrl  = ytLinks[title] || `https://www.youtube.com/results?search_query=${encodeURIComponent(title + ' course')}`;
+      card.dataset.youtube = ytUrl;
+
+      const enrollBtn = card.querySelector('.btn-primary');
+      if (!enrollBtn) return;
+
+      /* Insert YouTube button above Enroll button */
+      const ytBtn = document.createElement('a');
+      ytBtn.href   = ytUrl;
+      ytBtn.target = '_blank';
+      ytBtn.rel    = 'noopener';
+      ytBtn.style.cssText = 'display:flex;align-items:center;justify-content:center;gap:0.5rem;width:100%;padding:0.65rem;border:1.5px solid rgba(255,0,0,0.3);border-radius:10px;color:#cc0000;font-weight:600;font-size:0.875rem;text-decoration:none;background:rgba(255,0,0,0.04);margin-bottom:0.5rem;transition:background 0.2s,border-color 0.2s;box-sizing:border-box';
+      ytBtn.innerHTML = '▶️ Watch Free on YouTube';
+      ytBtn.addEventListener('mouseenter', () => { ytBtn.style.background='rgba(255,0,0,0.1)'; ytBtn.style.borderColor='rgba(255,0,0,0.6)'; });
+      ytBtn.addEventListener('mouseleave', () => { ytBtn.style.background='rgba(255,0,0,0.04)'; ytBtn.style.borderColor='rgba(255,0,0,0.3)'; });
+      enrollBtn.parentNode.insertBefore(ytBtn, enrollBtn);
+    });
+
+    /* Enroll modal */
+    let currentYoutubeUrl = '#';
+
+    function openCourseModal(title, price, youtubeUrl) {
+      const user = (() => { try { return JSON.parse(localStorage.getItem('user')); } catch { return null; } })();
+      currentYoutubeUrl = youtubeUrl || '#';
+      document.getElementById('modalCourseTitle').textContent = title;
+      document.getElementById('modalCoursePrice').textContent = price ? `Price: ${price}` : '';
+      document.getElementById('modalYoutubeLink').href = youtubeUrl || '#';
+      document.getElementById('enrollYoutubeBtn').href = youtubeUrl || '#';
+      if (user) {
+        document.getElementById('enrollName').value  = user.fullName || '';
+        document.getElementById('enrollEmail').value = user.email   || '';
+      }
+      document.getElementById('courseEnrollForm').style.display = '';
+      document.getElementById('enrollSuccess').style.display = 'none';
+      document.getElementById('courseModal').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCourseModal() {
+      document.getElementById('courseModal').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('courseModal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('courseModal')) closeCourseModal();
+    });
+
+    /* Wire Enroll buttons */
+    document.querySelectorAll('[data-course] .btn-primary').forEach(btn => {
+      const card    = btn.closest('[data-course]');
+      const title   = card.dataset.title || 'Course';
+      const price   = card.dataset.price ? `$${card.dataset.price}` : '';
+      const ytUrl   = card.dataset.youtube || '#';
+      btn.addEventListener('click', () => openCourseModal(title, price, ytUrl));
+    });
+
+    /* Wire Start Path buttons */
+    document.querySelectorAll('.btn-emerald').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (typeof showToast === 'function') showToast('Please enroll in individual courses to start a learning path!', 'info');
+      });
+    });
+
+    /* Explore All Courses button */
+    document.querySelector('.gradient-bg-accent .btn')?.addEventListener('click', () => {
+      document.getElementById('courseSearch')?.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    /* Enroll form submit — saves to DB */
+    document.getElementById('courseEnrollForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name  = document.getElementById('enrollName').value.trim();
+      const email = document.getElementById('enrollEmail').value.trim();
+      if (!name || !email) {
+        if (typeof showToast === 'function') showToast('Please enter your name and email.', 'error');
+        return;
+      }
+      const btn = document.getElementById('enrollSubmitBtn');
+      document.getElementById('enrollBtnText').style.display = 'none';
+      document.getElementById('enrollBtnSpinner').style.display = '';
+      btn.disabled = true;
+      try {
+        await fetch('/api/applications', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'course',
+            title: document.getElementById('modalCourseTitle').textContent,
+            fullName: name,
+            email,
+            background: document.getElementById('enrollBackground').value,
+          }),
+        });
+      } catch(err) { console.warn('Application save failed:', err.message); }
+      document.getElementById('enrollBtnText').style.display = '';
+      document.getElementById('enrollBtnSpinner').style.display = 'none';
+      btn.disabled = false;
+      document.getElementById('courseEnrollForm').style.display = 'none';
+      document.getElementById('enrollSuccess').style.display = '';
+    });
+  </script>
+</body>
+</html>

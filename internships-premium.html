@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8fafc">
+  <title>Internships - InternArea Premium</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+ <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/darkmode.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/loaders.css">
+</head>
+<body>
+
+  <!-- Page Loader -->
+  <div id="pageLoader" class="page-loader">
+    <div class="loader-logo">InternArea</div>
+    <div class="loader-ring"></div>
+    <div class="loader-dots">
+      <div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div>
+    </div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div id="scrollProgress" class="scroll-progress-bar"></div>
+  <div id="toastContainer" class="toast-container"></div>
+  <div id="mobileOverlay" class="mobile-overlay"></div>
+
+  <!-- Mobile Menu -->
+  <aside id="mobileMenu" class="mobile-menu">
+    <div class="mobile-menu-header">
+      <a href="index-premium.html" class="nav-logo">
+        <svg width="24" height="24" viewBox="0 0 48 48"><defs><linearGradient id="mLG2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#14b8a6"/><stop offset="100%" style="stop-color:#8b5cf6"/></linearGradient></defs><path d="M24 4L40 12V28C40 37.9 24 44 24 44S8 37.9 8 28V12L24 4Z" fill="url(#mLG2)"/></svg>
+        InternArea
+      </a>
+      <button id="mobileMenuClose" class="mobile-menu-close">✕</button>
+    </div>
+    <nav class="mobile-menu-links">
+      <a href="index-premium.html"        class="mobile-nav-link">🏠 Home</a>
+      <a href="internships-premium.html"  class="mobile-nav-link">🎓 Internships</a>
+      <a href="jobs-premium.html"         class="mobile-nav-link">💼 Jobs</a>
+      <a href="courses-premium.html"      class="mobile-nav-link">📚 Courses</a>
+      <a href="pricing.html"              class="mobile-nav-link">💎 Pricing</a>
+      <a href="blog.html"                 class="mobile-nav-link">✍️ Blog</a>
+      <a href="referral.html"             class="mobile-nav-link">🎁 Referral</a>
+      <a href="resume.html"              class="mobile-nav-link">📄 Resume Builder</a>
+    </nav>
+    <div class="mobile-menu-footer" style="display:flex;flex-direction:column;gap:0.75rem">
+      <a href="login.html" class="btn btn-primary" style="width:100%;text-decoration:none;text-align:center">Sign In</a>
+      <a href="signup.html" class="btn btn-secondary" style="width:100%;text-decoration:none;text-align:center">Create Account</a>
+    </div>
+  </aside>
+
+  <!-- Navigation -->
+  <nav id="mainNav">
+    <div class="container">
+      <div class="nav-container">
+        <a href="index-premium.html" class="nav-logo">
+          <svg width="28" height="28" viewBox="0 0 48 48"><defs><linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#14b8a6"/><stop offset="100%" style="stop-color:#8b5cf6"/></linearGradient></defs>
+          <path d="M24 4L40 12V28C40 37.9 24 44 24 44S8 37.9 8 28V12L24 4Z" fill="url(#logoGrad)"/>
+          <path d="M24 20L32 24V32C32 36 24 39 24 39S16 36 16 32V24L24 20Z" fill="white" opacity="0.2"/></svg>
+          InternArea
+        </a>
+        <div class="nav-links" id="navLinks">
+          <a href="index-premium.html"       class="nav-link">Home</a>
+          <a href="internships-premium.html" class="nav-link active">Internships</a>
+          <a href="jobs-premium.html"        class="nav-link">Jobs</a>
+          <a href="courses-premium.html"     class="nav-link">Courses</a>
+          <a href="pricing.html"             class="nav-link">Pricing</a>
+          <a href="blog.html"                class="nav-link">Blog</a>
+          <a href="resume.html"              class="nav-link">📄 Resume</a>
+        </div>
+        <div class="nav-actions">
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+          <a href="signup.html" class="btn btn-secondary btn-small md-hidden" style="text-decoration:none">Sign Up</a>
+          <a href="login.html" class="btn btn-primary btn-small md-hidden" style="text-decoration:none">Sign In</a>
+          <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Page Header -->
+    <section class="gradient-bg-main" style="padding: var(--spacing-3xl) 0; border-bottom: 1px solid var(--border-light);">
+      <div class="container">
+        <div class="animate-fade-in-down">
+          <div style="display:flex;gap:var(--spacing-sm);margin-bottom:var(--spacing-md)">
+            <span class="badge badge-emerald">🎓 10K+ Internships Available</span>
+          </div>
+          <h1 class="gradient-text-emerald" style="margin-bottom: var(--spacing-md);">Premium Internships</h1>
+          <p style="font-size: 1.125rem; color: var(--text-light); max-width: 600px;">Explore curated internship opportunities from top-tier companies. Gain real-world experience and accelerate your career.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Search & Filters Bar -->
+    <section style="padding: var(--spacing-xl) 0; border-bottom: 1px solid var(--border-light);">
+      <div class="container">
+        <div class="search-container">
+          <input type="text" class="search-input" id="mainSearch" placeholder="Search internships by company, role, or skill…" data-search>
+          <div class="search-filters">
+            <select data-filter-key="type" aria-label="Work type">
+              <option value="all">All Locations</option>
+              <option value="remote">Remote</option>
+              <option value="onsite">On-site</option>
+              <option value="hybrid">Hybrid</option>
+            </select>
+            <button class="btn btn-primary btn-small ripple-effect" data-search-btn>Search</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <section style="padding: var(--spacing-3xl) 0;">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: 260px 1fr; gap: var(--spacing-3xl);" id="mainLayout">
+
+          <!-- Filters Sidebar -->
+          <aside style="height: fit-content; position: sticky; top: 100px;" class="reveal-left">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--spacing-lg)">
+              <h3 style="margin: 0; font-size: 1.25rem;">Filters</h3>
+              <button class="btn btn-secondary" style="font-size:0.75rem;padding:4px 12px" data-clear-filters>Clear All</button>
+            </div>
+
+            <div style="margin-bottom: var(--spacing-xl);">
+              <h4 style="margin-bottom: var(--spacing-md); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-light);">Duration</h4>
+              <div style="display: flex; flex-direction: column; gap: var(--spacing-sm);">
+                <label style="display:flex;align-items:center;gap:var(--spacing-sm);cursor:pointer">
+                  <input type="checkbox" data-filter-key="duration" data-filter-value="1"> <span>1–3 Months</span>
+                </label>
+                <label style="display:flex;align-items:center;gap:var(--spacing-sm);cursor:pointer">
+                  <input type="checkbox" data-filter-key="duration" data-filter-value="3"> <span>3–6 Months</span>
+                </label>
+                <label style="display:flex;align-items:center;gap:var(--spacing-sm);cursor:pointer">
+                  <input type="checkbox" data-filter-key="duration" data-filter-value="6"> <span>6+ Months</span>
+                </label>
+              </div>
+            </div>
+
+            <div style="margin-bottom: var(--spacing-xl);">
+              <h4 style="margin-bottom: var(--spacing-md); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-light);">Work Type</h4>
+              <div style="display: flex; flex-direction: column; gap: var(--spacing-sm);">
+                <label style="display:flex;align-items:center;gap:var(--spacing-sm);cursor:pointer">
+                  <input type="checkbox" data-filter-key="type" data-filter-value="remote"> <span>Remote</span>
+                </label>
+                <label style="display:flex;align-items:center;gap:var(--spacing-sm);cursor:pointer">
+                  <input type="checkbox" data-filter-key="type" data-filter-value="onsite"> <span>On-site</span>
+                </label>
+                <label style="display:flex;align-items:center;gap:var(--spacing-sm);cursor:pointer">
+                  <input type="checkbox" data-filter-key="type" data-filter-value="hybrid"> <span>Hybrid</span>
+                </label>
+              </div>
+            </div>
+
+            <div style="margin-bottom: var(--spacing-xl);">
+              <h4 style="margin-bottom: var(--spacing-md); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-light);">Category</h4>
+              <div style="display: flex; flex-direction: column; gap: var(--spacing-sm);">
+                <label style="display:flex;align-items:center;gap:var(--spacing-sm);cursor:pointer">
+                  <input type="checkbox" data-filter-key="category" data-filter-value="engineering"> <span>Engineering</span>
+                </label>
+                <label style="display:flex;align-items:center;gap:var(--spacing-sm);cursor:pointer">
+                  <input type="checkbox" data-filter-key="category" data-filter-value="product"> <span>Product</span>
+                </label>
+                <label style="display:flex;align-items:center;gap:var(--spacing-sm);cursor:pointer">
+                  <input type="checkbox" data-filter-key="category" data-filter-value="design"> <span>Design</span>
+                </label>
+                <label style="display:flex;align-items:center;gap:var(--spacing-sm);cursor:pointer">
+                  <input type="checkbox" data-filter-key="category" data-filter-value="marketing"> <span>Marketing</span>
+                </label>
+                <label style="display:flex;align-items:center;gap:var(--spacing-sm);cursor:pointer">
+                  <input type="checkbox" data-filter-key="category" data-filter-value="data"> <span>Data Science</span>
+                </label>
+              </div>
+            </div>
+
+            <div style="margin-bottom: var(--spacing-xl);">
+              <h4 style="margin-bottom: var(--spacing-md); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-light);">Stipend</h4>
+              <div style="display: flex; flex-direction: column; gap: var(--spacing-sm);">
+                <label style="display:flex;align-items:center;gap:var(--spacing-sm);cursor:pointer">
+                  <input type="checkbox" data-filter-key="salary" data-filter-value="paid"> <span>Paid</span>
+                </label>
+                <label style="display:flex;align-items:center;gap:var(--spacing-sm);cursor:pointer">
+                  <input type="checkbox" data-filter-key="salary" data-filter-value="5000"> <span>$5K+/month</span>
+                </label>
+                <label style="display:flex;align-items:center;gap:var(--spacing-sm);cursor:pointer">
+                  <input type="checkbox" data-filter-key="salary" data-filter-value="8000"> <span>$8K+/month</span>
+                </label>
+              </div>
+            </div>
+          </aside>
+
+          <!-- Internships List -->
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-xl);">
+              <h3 style="margin: 0;" data-results-count data-type="Internships">Showing 6 Internships</h3>
+              <select data-sort aria-label="Sort by">
+                <option value="latest">Sort: Latest</option>
+                <option value="salary">Highest Stipend</option>
+                <option value="rating">Best Rated</option>
+              </select>
+            </div>
+
+            <div class="grid grid-1" data-results-grid>
+              <!-- Card 1 -->
+              <div class="card stagger-item hover-lift gradient-border"
+                   data-searchable data-category="engineering" data-type="remote" data-duration="3" data-salary="paid" data-title="Frontend Engineer Intern" data-company="Google" data-skills="React TypeScript Web">
+                <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:var(--spacing-lg)">
+                  <div style="display:flex;align-items:center;gap:var(--spacing-md)">
+                    <div style="width:48px;height:48px;background:linear-gradient(135deg,#14b8a6,#8b5cf6);border-radius:12px;display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:1.1rem;flex-shrink:0">G</div>
+                    <div>
+                      <h4 style="margin: 0 0 4px;">Frontend Engineer Intern</h4>
+                      <p style="margin: 0; color: var(--text-light); font-weight: 500; font-size:0.9rem">Google</p>
+                    </div>
+                  </div>
+                  <button class="btn-icon" style="background: rgba(80,200,120,0.1); color: var(--accent-emerald); border: none;" aria-label="Save">
+                    <svg width="20" height="20" viewBox="0 0 48 48"><path d="M24 40L6 24C2 20 2 14 6 10C10 6 16 6 20 10L24 14L28 10C32 6 38 6 42 10C46 14 46 20 42 24L24 40Z" fill="currentColor"/></svg>
+                  </button>
+                </div>
+                <div style="display: flex; gap: var(--spacing-sm); margin-bottom: var(--spacing-lg); flex-wrap: wrap;">
+                  <span class="badge badge-emerald">🌐 Remote</span>
+                  <span class="badge">3 months</span>
+                  <span class="badge">Stipend included</span>
+                </div>
+                <p style="color: var(--text-light); margin-bottom: var(--spacing-lg);">Build user interfaces for Google's products used by billions. Work with modern frameworks and mentorship from senior engineers.</p>
+                <div style="display: flex; gap: var(--spacing-sm); flex-wrap: wrap; margin-bottom: var(--spacing-lg);">
+                  <span style="font-size:0.75rem;background:rgba(20,184,166,0.1);color:var(--primary-teal);padding:4px 12px;border-radius:8px">React</span>
+                  <span style="font-size:0.75rem;background:rgba(20,184,166,0.1);color:var(--primary-teal);padding:4px 12px;border-radius:8px">TypeScript</span>
+                  <span style="font-size:0.75rem;background:rgba(20,184,166,0.1);color:var(--primary-teal);padding:4px 12px;border-radius:8px">Web APIs</span>
+                </div>
+                <button class="btn btn-primary ripple-effect" style="width: 100%;">Apply Now</button>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="card stagger-item hover-lift gradient-border"
+                   data-searchable data-category="data" data-type="onsite" data-duration="4" data-salary="8000" data-title="Data Science Intern" data-company="Meta" data-skills="Python ML Analytics">
+                <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:var(--spacing-lg)">
+                  <div style="display:flex;align-items:center;gap:var(--spacing-md)">
+                    <div style="width:48px;height:48px;background:linear-gradient(135deg,#1877F2,#42B8FF);border-radius:12px;display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:1.1rem;flex-shrink:0">M</div>
+                    <div>
+                      <h4 style="margin: 0 0 4px;">Data Science Intern</h4>
+                      <p style="margin: 0; color: var(--text-light); font-weight: 500; font-size:0.9rem">Meta</p>
+                    </div>
+                  </div>
+                  <button class="btn-icon" style="background: rgba(80,200,120,0.1); color: var(--accent-emerald); border: none;" aria-label="Save">
+                    <svg width="20" height="20" viewBox="0 0 48 48"><path d="M24 40L6 24C2 20 2 14 6 10C10 6 16 6 20 10L24 14L28 10C32 6 38 6 42 10C46 14 46 20 42 24L24 40Z" fill="currentColor"/></svg>
+                  </button>
+                </div>
+                <div style="display: flex; gap: var(--spacing-sm); margin-bottom: var(--spacing-lg); flex-wrap: wrap;">
+                  <span class="badge badge-emerald">📍 San Francisco</span>
+                  <span class="badge">4 months</span>
+                  <span class="badge">$8,000/month</span>
+                </div>
+                <p style="color: var(--text-light); margin-bottom: var(--spacing-lg);">Analyze billions of data points to improve platform performance. Work with cutting-edge ML tools and research teams.</p>
+                <div style="display: flex; gap: var(--spacing-sm); flex-wrap: wrap; margin-bottom: var(--spacing-lg);">
+                  <span style="font-size:0.75rem;background:rgba(20,184,166,0.1);color:var(--primary-teal);padding:4px 12px;border-radius:8px">Python</span>
+                  <span style="font-size:0.75rem;background:rgba(20,184,166,0.1);color:var(--primary-teal);padding:4px 12px;border-radius:8px">ML/AI</span>
+                  <span style="font-size:0.75rem;background:rgba(20,184,166,0.1);color:var(--primary-teal);padding:4px 12px;border-radius:8px">Analytics</span>
+                </div>
+                <button class="btn btn-primary ripple-effect" style="width: 100%;">Apply Now</button>
+              </div>
+
+              <!-- Card 3 -->
+              <div class="card stagger-item hover-lift gradient-border"
+                   data-searchable data-category="product" data-type="remote" data-duration="3" data-salary="7000" data-title="Product Manager Intern" data-company="Microsoft" data-skills="Strategy Analytics Cloud">
+                <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:var(--spacing-lg)">
+                  <div style="display:flex;align-items:center;gap:var(--spacing-md)">
+                    <div style="width:48px;height:48px;background:linear-gradient(135deg,#0078d4,#50e6ff);border-radius:12px;display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:1.1rem;flex-shrink:0">MS</div>
+                    <div>
+                      <h4 style="margin: 0 0 4px;">Product Manager Intern</h4>
+                      <p style="margin: 0; color: var(--text-light); font-weight: 500; font-size:0.9rem">Microsoft</p>
+                    </div>
+                  </div>
+                  <button class="btn-icon" style="background: rgba(80,200,120,0.1); color: var(--accent-emerald); border: none;" aria-label="Save">
+                    <svg width="20" height="20" viewBox="0 0 48 48"><path d="M24 40L6 24C2 20 2 14 6 10C10 6 16 6 20 10L24 14L28 10C32 6 38 6 42 10C46 14 46 20 42 24L24 40Z" fill="currentColor"/></svg>
+                  </button>
+                </div>
+                <div style="display: flex; gap: var(--spacing-sm); margin-bottom: var(--spacing-lg); flex-wrap: wrap;">
+                  <span class="badge badge-emerald">🌐 Remote</span>
+                  <span class="badge">3 months</span>
+                  <span class="badge">$7,000/month</span>
+                </div>
+                <p style="color: var(--text-light); margin-bottom: var(--spacing-lg);">Shape the future of cloud products. Collaborate with engineers and stakeholders on strategic initiatives that impact millions.</p>
+                <div style="display: flex; gap: var(--spacing-sm); flex-wrap: wrap; margin-bottom: var(--spacing-lg);">
+                  <span style="font-size:0.75rem;background:rgba(20,184,166,0.1);color:var(--primary-teal);padding:4px 12px;border-radius:8px">Strategy</span>
+                  <span style="font-size:0.75rem;background:rgba(20,184,166,0.1);color:var(--primary-teal);padding:4px 12px;border-radius:8px">Analytics</span>
+                  <span style="font-size:0.75rem;background:rgba(20,184,166,0.1);color:var(--primary-teal);padding:4px 12px;border-radius:8px">Cloud</span>
+                </div>
+                <button class="btn btn-primary ripple-effect" style="width: 100%;">Apply Now</button>
+              </div>
+
+              <!-- Card 4 -->
+              <div class="card stagger-item hover-lift gradient-border"
+                   data-searchable data-category="design" data-type="hybrid" data-duration="3" data-salary="paid" data-title="UX Design Intern" data-company="Airbnb" data-skills="Figma UX UI Prototyping">
+                <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:var(--spacing-lg)">
+                  <div style="display:flex;align-items:center;gap:var(--spacing-md)">
+                    <div style="width:48px;height:48px;background:linear-gradient(135deg,#FF5A5F,#FF8569);border-radius:12px;display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:1.1rem;flex-shrink:0">AB</div>
+                    <div>
+                      <h4 style="margin: 0 0 4px;">UX Design Intern</h4>
+                      <p style="margin: 0; color: var(--text-light); font-weight: 500; font-size:0.9rem">Airbnb</p>
+                    </div>
+                  </div>
+                  <button class="btn-icon" style="background: rgba(80,200,120,0.1); color: var(--accent-emerald); border: none;" aria-label="Save">
+                    <svg width="20" height="20" viewBox="0 0 48 48"><path d="M24 40L6 24C2 20 2 14 6 10C10 6 16 6 20 10L24 14L28 10C32 6 38 6 42 10C46 14 46 20 42 24L24 40Z" fill="currentColor"/></svg>
+                  </button>
+                </div>
+                <div style="display: flex; gap: var(--spacing-sm); margin-bottom: var(--spacing-lg); flex-wrap: wrap;">
+                  <span class="badge badge-emerald">🏢 Hybrid</span>
+                  <span class="badge">3 months</span>
+                  <span class="badge">Stipend included</span>
+                </div>
+                <p style="color: var(--text-light); margin-bottom: var(--spacing-lg);">Design the future of travel experiences. Work alongside world-class designers to create intuitive, beautiful interfaces.</p>
+                <div style="display: flex; gap: var(--spacing-sm); flex-wrap: wrap; margin-bottom: var(--spacing-lg);">
+                  <span style="font-size:0.75rem;background:rgba(20,184,166,0.1);color:var(--primary-teal);padding:4px 12px;border-radius:8px">Figma</span>
+                  <span style="font-size:0.75rem;background:rgba(20,184,166,0.1);color:var(--primary-teal);padding:4px 12px;border-radius:8px">UX Research</span>
+                  <span style="font-size:0.75rem;background:rgba(20,184,166,0.1);color:var(--primary-teal);padding:4px 12px;border-radius:8px">Prototyping</span>
+                </div>
+                <button class="btn btn-primary ripple-effect" style="width: 100%;">Apply Now</button>
+              </div>
+
+              <!-- Card 5 -->
+              <div class="card stagger-item hover-lift gradient-border"
+                   data-searchable data-category="engineering" data-type="remote" data-duration="6" data-salary="5000" data-title="Backend Engineer Intern" data-company="Stripe" data-skills="Go Python APIs Payments">
+                <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:var(--spacing-lg)">
+                  <div style="display:flex;align-items:center;gap:var(--spacing-md)">
+                    <div style="width:48px;height:48px;background:linear-gradient(135deg,#635BFF,#8B83FF);border-radius:12px;display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:1.1rem;flex-shrink:0">S</div>
+                    <div>
+                      <h4 style="margin: 0 0 4px;">Backend Engineer Intern</h4>
+                      <p style="margin: 0; color: var(--text-light); font-weight: 500; font-size:0.9rem">Stripe</p>
+                    </div>
+                  </div>
+                  <button class="btn-icon" style="background: rgba(80,200,120,0.1); color: var(--accent-emerald); border: none;" aria-label="Save">
+                    <svg width="20" height="20" viewBox="0 0 48 48"><path d="M24 40L6 24C2 20 2 14 6 10C10 6 16 6 20 10L24 14L28 10C32 6 38 6 42 10C46 14 46 20 42 24L24 40Z" fill="currentColor"/></svg>
+                  </button>
+                </div>
+                <div style="display: flex; gap: var(--spacing-sm); margin-bottom: var(--spacing-lg); flex-wrap: wrap;">
+                  <span class="badge badge-emerald">🌐 Remote</span>
+                  <span class="badge">6 months</span>
+                  <span class="badge">$5,000/month</span>
+                </div>
+                <p style="color: var(--text-light); margin-bottom: var(--spacing-lg);">Build the financial infrastructure of the internet. Work on payment APIs used by millions of businesses worldwide.</p>
+                <div style="display: flex; gap: var(--spacing-sm); flex-wrap: wrap; margin-bottom: var(--spacing-lg);">
+                  <span style="font-size:0.75rem;background:rgba(20,184,166,0.1);color:var(--primary-teal);padding:4px 12px;border-radius:8px">Go</span>
+                  <span style="font-size:0.75rem;background:rgba(20,184,166,0.1);color:var(--primary-teal);padding:4px 12px;border-radius:8px">Python</span>
+                  <span style="font-size:0.75rem;background:rgba(20,184,166,0.1);color:var(--primary-teal);padding:4px 12px;border-radius:8px">APIs</span>
+                </div>
+                <button class="btn btn-primary ripple-effect" style="width: 100%;">Apply Now</button>
+              </div>
+
+              <!-- Card 6 -->
+              <div class="card stagger-item hover-lift gradient-border"
+                   data-searchable data-category="marketing" data-type="remote" data-duration="3" data-salary="paid" data-title="Growth Marketing Intern" data-company="Spotify" data-skills="SEO Analytics Content Social">
+                <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:var(--spacing-lg)">
+                  <div style="display:flex;align-items:center;gap:var(--spacing-md)">
+                    <div style="width:48px;height:48px;background:linear-gradient(135deg,#1DB954,#17a647);border-radius:12px;display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:1.1rem;flex-shrink:0">Sp</div>
+                    <div>
+                      <h4 style="margin: 0 0 4px;">Growth Marketing Intern</h4>
+                      <p style="margin: 0; color: var(--text-light); font-weight: 500; font-size:0.9rem">Spotify</p>
+                    </div>
+                  </div>
+                  <button class="btn-icon" style="background: rgba(80,200,120,0.1); color: var(--accent-emerald); border: none;" aria-label="Save">
+                    <svg width="20" height="20" viewBox="0 0 48 48"><path d="M24 40L6 24C2 20 2 14 6 10C10 6 16 6 20 10L24 14L28 10C32 6 38 6 42 10C46 14 46 20 42 24L24 40Z" fill="currentColor"/></svg>
+                  </button>
+                </div>
+                <div style="display: flex; gap: var(--spacing-sm); margin-bottom: var(--spacing-lg); flex-wrap: wrap;">
+                  <span class="badge badge-emerald">🌐 Remote</span>
+                  <span class="badge">3 months</span>
+                  <span class="badge">Stipend included</span>
+                </div>
+                <p style="color: var(--text-light); margin-bottom: var(--spacing-lg);">Drive user growth for the world's largest music streaming platform. Run experiments, analyze data, and optimize campaigns.</p>
+                <div style="display: flex; gap: var(--spacing-sm); flex-wrap: wrap; margin-bottom: var(--spacing-lg);">
+                  <span style="font-size:0.75rem;background:rgba(20,184,166,0.1);color:var(--primary-teal);padding:4px 12px;border-radius:8px">SEO</span>
+                  <span style="font-size:0.75rem;background:rgba(20,184,166,0.1);color:var(--primary-teal);padding:4px 12px;border-radius:8px">Analytics</span>
+                  <span style="font-size:0.75rem;background:rgba(20,184,166,0.1);color:var(--primary-teal);padding:4px 12px;border-radius:8px">Content</span>
+                </div>
+                <button class="btn btn-primary ripple-effect" style="width: 100%;">Apply Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="gradient-bg-accent" style="padding: var(--spacing-3xl) 0; color: white; text-align: center;">
+      <div class="container" style="max-width: 700px;">
+        <h2 style="color: white; margin-bottom: var(--spacing-lg);">Take the Next Step</h2>
+        <p style="font-size: 1.125rem; margin-bottom: var(--spacing-2xl);">Apply to premium internships and start building your career with industry leaders.</p>
+        <button class="btn ripple-effect" style="background: white; color: var(--primary-teal); font-weight: 700;">Browse All Internships</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section"><h4>About InternArea</h4><p style="color:#cbd5e1">Premium career platform for ambitious professionals.</p></div>
+        <div class="footer-section"><h4>Browse</h4><ul><li><a href="internships-premium.html">Internships</a></li><li><a href="jobs-premium.html">Jobs</a></li><li><a href="courses-premium.html">Courses</a></li></ul></div>
+        <div class="footer-section"><h4>Resources</h4><ul><li><a href="blog.html">Blog</a></li><li><a href="#">Career Guide</a></li><li><a href="#">Resume Builder</a></li></ul></div>
+        <div class="footer-section"><h4>Company</h4><ul><li><a href="#">About</a></li><li><a href="referral.html">Referral</a></li><li><a href="#">Contact</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2024 InternArea Premium. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <button class="btn-scroll-to-top" id="scrollTop" aria-label="Back to top">↑</button>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       Internship Apply Modal — 3-Step Flow
+         Step 1: Application form  (Full Name, Email, College, Phone, Resume, Cover Letter)
+         Step 2: OTP verification  (6-box input, localhost dev-mode bypass)
+         Step 3: Success + auto-redirect to internships page
+  ═══════════════════════════════════════════════════════════ -->
+  <div id="internModal"
+       role="dialog" aria-modal="true" aria-labelledby="modalInternTitle"
+       tabindex="-1"
+       style="display:none;position:fixed;inset:0;z-index:10000;
+              background:rgba(0,0,0,0.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+              overflow-y:auto;overflow-x:hidden">
+
+    <div class="im-wrap">
+      <div id="internModalBox" class="im-box">
+
+        <!-- Close button (visible on all steps) -->
+        <button id="modalCloseBtn" class="im-close-btn" aria-label="Close modal">✕</button>
+
+        <!-- ════════ STEP 1 : Application Form ════════ -->
+        <div id="modalStep1">
+          <div class="im-header">
+            <h3 id="modalInternTitle" class="im-title">Apply for Internship</h3>
+            <p  id="modalInternCompany" class="im-subtitle"></p>
+          </div>
+          <div class="im-body">
+            <form id="internApplyForm" novalidate>
+
+              <div class="mf-group">
+                <label class="mf-label" for="internName">Full Name <span class="mf-req">*</span></label>
+                <input type="text" id="internName" class="mf-input" placeholder="Your full name"
+                       required autocomplete="name">
+                <span class="mf-err" id="errName"></span>
+              </div>
+
+              <div class="mf-group">
+                <label class="mf-label" for="internEmail">Email Address <span class="mf-req">*</span></label>
+                <input type="email" id="internEmail" class="mf-input" placeholder="you@example.com"
+                       required autocomplete="email">
+                <span class="mf-err" id="errEmail"></span>
+              </div>
+
+              <div class="mf-group">
+                <label class="mf-label" for="internCollege">College / University <span class="mf-req">*</span></label>
+                <input type="text" id="internCollege" class="mf-input" placeholder="e.g. IIT Delhi, BITS Pilani…"
+                       required>
+                <span class="mf-err" id="errCollege"></span>
+              </div>
+
+              <div class="mf-group">
+                <label class="mf-label" for="internPhone">Phone Number <span class="mf-req">*</span></label>
+                <input type="tel" id="internPhone" class="mf-input" placeholder="+91 98765 43210"
+                       required autocomplete="tel">
+                <span class="mf-err" id="errPhone"></span>
+              </div>
+
+              <div class="mf-group">
+                <label class="mf-label" for="internResumeFile">Resume (PDF / DOC) <span class="mf-req">*</span></label>
+                <div class="mf-file-zone" id="resumeZone">
+                  <input type="file" id="internResumeFile" accept=".pdf,.doc,.docx" style="display:none">
+                  <button type="button" class="mf-file-btn" id="resumePickBtn">Choose File</button>
+                  <span id="resumeFileName" class="mf-file-name">No file chosen</span>
+                </div>
+                <span class="mf-err" id="errResume"></span>
+              </div>
+
+              <div class="mf-group">
+                <label class="mf-label" for="internCover">
+                  Cover Letter <span class="mf-opt">(Optional)</span>
+                </label>
+                <textarea id="internCover" class="mf-input" rows="2"
+                          placeholder="Tell us why you're excited about this role…"></textarea>
+              </div>
+
+              <button type="submit" id="internSubmitBtn" class="im-btn-primary" style="margin-top:0.5rem">
+                <span id="internBtnText">Submit Application</span>
+                <span id="internBtnSpinner" class="im-spinner" style="display:none"></span>
+              </button>
+
+            </form>
+          </div>
+        </div><!-- /step1 -->
+
+        <!-- ════════ STEP 2 : OTP Verification ════════ -->
+        <!--
+          Development Mode — OTP validation disabled for localhost testing.
+          Any 6-digit numeric OTP entered by the user is accepted on localhost.
+          In production, replace the IS_LOCALHOST bypass with a real API call to
+          POST /api/auth/verify-otp  { email, code }.
+        -->
+        <div id="modalStep2" style="display:none">
+          <div class="im-body" style="padding-top:1.5rem">
+
+            <button type="button" id="otpBackBtn" class="im-back-btn">&#8592; Back</button>
+
+            <div class="otp-hero">
+              <div class="otp-icon-wrap">📧</div>
+              <h3 class="otp-heading">Verify Your Email</h3>
+              <p class="otp-subtext">
+                Enter the 6-digit code sent to<br>
+                <strong id="otpEmailDisplay"></strong>
+              </p>
+            </div>
+
+            <!-- Demo OTP display box — visible only on localhost -->
+            <div id="demoOtpBox" class="demo-otp-box">
+              <div class="demo-otp-label">Development Mode &mdash; Your OTP Code</div>
+              <div id="demoOtpCode" class="demo-otp-code"></div>
+              <div class="demo-otp-hint">Enter this code below &mdash; or any 6 digits on localhost</div>
+            </div>
+
+            <!-- 6 separate OTP input boxes -->
+            <div class="otp-row" id="otpInputsWrapper"
+                 role="group" aria-label="One-time password input">
+              <input class="otp-box" type="text" inputmode="numeric" pattern="[0-9]*"
+                     maxlength="1" id="otp1" aria-label="OTP digit 1">
+              <input class="otp-box" type="text" inputmode="numeric" pattern="[0-9]*"
+                     maxlength="1" id="otp2" aria-label="OTP digit 2">
+              <input class="otp-box" type="text" inputmode="numeric" pattern="[0-9]*"
+                     maxlength="1" id="otp3" aria-label="OTP digit 3">
+              <input class="otp-box" type="text" inputmode="numeric" pattern="[0-9]*"
+                     maxlength="1" id="otp4" aria-label="OTP digit 4">
+              <input class="otp-box" type="text" inputmode="numeric" pattern="[0-9]*"
+                     maxlength="1" id="otp5" aria-label="OTP digit 5">
+              <input class="otp-box" type="text" inputmode="numeric" pattern="[0-9]*"
+                     maxlength="1" id="otp6" aria-label="OTP digit 6">
+            </div>
+
+            <p id="otpErrorMsg" class="otp-err" style="display:none"></p>
+
+            <button type="button" id="verifyOtpBtn" class="im-btn-primary" style="margin-top:1.25rem">
+              <span id="verifyBtnText">Verify &amp; Continue</span>
+              <span id="verifyBtnSpinner" class="im-spinner" style="display:none"></span>
+            </button>
+
+          </div>
+        </div><!-- /step2 -->
+
+        <!-- ════════ STEP 3 : Success ════════ -->
+        <div id="modalStep3" style="display:none">
+          <div class="im-body im-success-body">
+            <div class="success-icon-wrap">🎉</div>
+            <h3 class="success-title">Verification Successful</h3>
+            <p class="success-desc">Your application has been submitted!</p>
+            <p class="success-note">We'll review and contact you within 2–4 business days.</p>
+            <p class="success-redirect">Redirecting to internships page…</p>
+            <button id="successCloseBtn" class="im-btn-primary" style="max-width:220px;margin:0 auto">
+              Go to Internships
+            </button>
+          </div>
+        </div><!-- /step3 -->
+
+      </div><!-- /.im-box -->
+    </div><!-- /.im-wrap -->
+  </div><!-- /#internModal -->
+
+  <script src="js/app.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/mobile-menu.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/counter.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/filter.js"></script>
+  <script src="js/auth-state.js"></script>
+
+  <!-- ════════════════════════════════════
+       Styles: Modal, OTP boxes, responsive
+  ════════════════════════════════════ -->
+  <style>
+    /* ── Keyframes ── */
+    @keyframes im-spin    { to { transform:rotate(360deg); } }
+    @keyframes im-fade-in { from { opacity:0; } to { opacity:1; } }
+    @keyframes im-slide-up {
+      from { opacity:0; transform:translateY(30px) scale(0.96); }
+      to   { opacity:1; transform:translateY(0)    scale(1);    }
+    }
+    @keyframes success-pop {
+      0%   { transform:scale(0.75); opacity:0; }
+      65%  { transform:scale(1.08); }
+      100% { transform:scale(1);    opacity:1; }
+    }
+
+    /* ── Overlay fade ── */
+    #internModal.im-open { animation:im-fade-in 0.22s ease forwards; }
+
+    /* ── Modal layout ── */
+    .im-wrap {
+      display:flex; align-items:flex-start; justify-content:center;
+      min-height:100%; padding:1rem 0.75rem;
+    }
+    .im-box {
+      background:var(--light-card); border-radius:16px; width:100%; max-width:460px;
+      position:relative; box-shadow:0 20px 50px rgba(0,0,0,0.28);
+      flex-shrink:0; margin:auto 0; overflow:hidden;
+    }
+    /* Tablet: 90% width */
+    @media (max-width:600px) { .im-box { max-width:92%; } }
+    /* Mobile: 95% width */
+    @media (max-width:420px) { .im-box { max-width:97%; border-radius:12px; } }
+
+    /* Entry animation (added by JS) */
+    .im-box.im-slide { animation:im-slide-up 0.3s cubic-bezier(0.34,1.46,0.64,1) forwards; }
+
+    /* ── Close button ── */
+    .im-close-btn {
+      position:absolute; top:0.75rem; right:0.75rem; z-index:10;
+      width:28px; height:28px; border-radius:50%; border:none;
+      background:rgba(100,116,139,0.14); color:var(--text-muted);
+      font-size:0.9rem; cursor:pointer; display:flex; align-items:center; justify-content:center;
+      transition:background 0.18s, transform 0.14s;
+    }
+    .im-close-btn:hover { background:rgba(100,116,139,0.26); transform:scale(1.1); }
+
+    /* ── Header / Body sections ── */
+    .im-header { padding:1.1rem 1.4rem 0; }
+    .im-body   {
+      padding:0 1.4rem 1.4rem;
+      max-height:calc(100dvh - 4rem);
+      overflow-y:auto; overflow-x:hidden;
+      -webkit-overflow-scrolling:touch;
+    }
+    .im-title    { font-family:'Outfit',sans-serif; margin:0 0 0.15rem; font-size:1.15rem; padding-right:2rem; }
+    .im-subtitle { color:var(--text-light); margin:0 0 0.85rem; font-size:0.82rem; }
+
+    /* ── Back button ── */
+    .im-back-btn {
+      background:none; border:none; color:var(--text-muted); font-family:inherit;
+      font-size:0.85rem; cursor:pointer; display:flex; align-items:center; gap:0.3rem;
+      margin-bottom:1.25rem; padding:0; transition:color 0.15s;
+    }
+    .im-back-btn:hover { color:var(--primary-teal); }
+
+    /* ── Form field groups ── */
+    .mf-group { margin-bottom:0.65rem; }
+    .mf-label { display:block; font-size:0.78rem; font-weight:600; margin-bottom:0.28rem; color:var(--text-dark); }
+    .mf-req   { color:#ef4444; }
+    .mf-opt   { font-weight:400; font-size:0.74rem; color:var(--text-muted); }
+    .mf-err   { display:block; font-size:0.7rem; color:#ef4444; margin-top:0.2rem; min-height:0.85em; }
+
+    /* ── Text / email / tel / textarea inputs ── */
+    .mf-input {
+      width:100%; padding:0.52rem 0.8rem; box-sizing:border-box;
+      border:1.5px solid var(--border-light); border-radius:8px;
+      font-family:inherit; font-size:0.84rem;
+      background:var(--light-bg); color:var(--text-dark);
+      outline:none; resize:vertical;
+      transition:border-color 0.2s, box-shadow 0.2s;
+    }
+    .mf-input:focus {
+      border-color:var(--primary-teal) !important;
+      box-shadow:0 0 0 3px rgba(20,184,166,0.12);
+    }
+    .mf-input.mf-error { border-color:#ef4444 !important; }
+
+    /* ── File upload zone ── */
+    .mf-file-zone {
+      display:flex; align-items:center; gap:0.6rem;
+      padding:0.42rem 0.7rem;
+      border:1.5px dashed var(--border-light); border-radius:8px;
+      background:var(--light-bg); transition:border-color 0.2s;
+    }
+    .mf-file-zone:hover { border-color:var(--primary-teal); }
+    .mf-file-btn {
+      flex-shrink:0; padding:0.3rem 0.75rem;
+      border:1.5px solid var(--primary-teal); border-radius:6px;
+      background:rgba(20,184,166,0.08); color:var(--primary-teal);
+      font-family:inherit; font-size:0.76rem; font-weight:600;
+      cursor:pointer; white-space:nowrap; transition:background 0.18s;
+    }
+    .mf-file-btn:hover { background:rgba(20,184,166,0.18); }
+    .mf-file-name {
+      font-size:0.78rem; color:var(--text-muted);
+      flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+    }
+
+    /* ── Primary gradient button ── */
+    .im-btn-primary {
+      width:100%; padding:0.75rem; border:none; border-radius:10px;
+      background:linear-gradient(135deg,#14b8a6,#8b5cf6);
+      color:#fff; font-weight:700; font-size:0.9rem;
+      cursor:pointer; font-family:inherit;
+      display:flex; align-items:center; justify-content:center; gap:0.5rem;
+      transition:opacity 0.18s, transform 0.14s;
+    }
+    .im-btn-primary:hover:not(:disabled) { opacity:0.91; transform:translateY(-1px); }
+    .im-btn-primary:disabled { opacity:0.58; cursor:not-allowed; }
+
+    /* ── Spinner ── */
+    .im-spinner {
+      width:18px; height:18px; flex-shrink:0;
+      border:2px solid rgba(255,255,255,0.38); border-top-color:#fff;
+      border-radius:50%; animation:im-spin 0.7s linear infinite;
+    }
+
+    /* ── OTP step ── */
+    .otp-hero      { text-align:center; margin-bottom:1.25rem; }
+    .otp-icon-wrap {
+      width:64px; height:64px; font-size:1.75rem;
+      background:linear-gradient(135deg,rgba(20,184,166,0.14),rgba(139,92,246,0.14));
+      border:2px solid rgba(20,184,166,0.3); border-radius:50%;
+      display:flex; align-items:center; justify-content:center; margin:0 auto 1rem;
+    }
+    .otp-heading { font-family:'Outfit',sans-serif; margin:0 0 0.5rem; }
+    .otp-subtext  { color:var(--text-light); font-size:0.9rem; margin:0; line-height:1.65; }
+
+    /* Demo OTP display */
+    .demo-otp-box {
+      margin-bottom:1.25rem; padding:0.85rem 1rem; text-align:center;
+      background:linear-gradient(135deg,rgba(20,184,166,0.08),rgba(139,92,246,0.08));
+      border:1.5px dashed rgba(20,184,166,0.48); border-radius:12px;
+    }
+    .demo-otp-label { font-size:0.72rem; font-weight:700; color:#14b8a6; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.4rem; }
+    .demo-otp-code  { font-size:clamp(1.5rem,5vw,2.25rem); font-weight:800; letter-spacing:0.3em; color:#8b5cf6; font-family:'Outfit',monospace; }
+    .demo-otp-hint  { font-size:0.72rem; color:var(--text-muted); margin-top:0.35rem; }
+
+    /* 6-box OTP row */
+    .otp-row {
+      display:flex; gap:clamp(0.4rem,2vw,0.75rem);
+      justify-content:center; margin-bottom:0.25rem;
+    }
+    .otp-box {
+      width:clamp(38px,11vw,52px); height:clamp(44px,12.5vw,58px);
+      text-align:center; caret-color:transparent;
+      font-size:clamp(1.1rem,4vw,1.5rem); font-weight:700;
+      border:2px solid var(--border-light); border-radius:10px;
+      background:var(--light-bg); color:var(--text-dark);
+      font-family:'Outfit',monospace; outline:none; flex-shrink:0;
+      transition:border-color 0.18s, box-shadow 0.18s, transform 0.1s;
+    }
+    .otp-box:focus  { border-color:var(--primary-teal); box-shadow:0 0 0 3px rgba(20,184,166,0.18); transform:scale(1.06); }
+    .otp-box.otp-filled { border-color:var(--primary-teal); background:rgba(20,184,166,0.06); }
+    .otp-box.otp-error  { border-color:#ef4444; box-shadow:0 0 0 3px rgba(239,68,68,0.14); }
+    .otp-err { text-align:center; font-size:0.85rem; color:#ef4444; margin:0.75rem 0 0; }
+
+    /* Success step */
+    .im-success-body { text-align:center; padding-top:1.75rem !important; }
+    .success-icon-wrap {
+      width:80px; height:80px; font-size:2.25rem;
+      background:linear-gradient(135deg,#14b8a6,#22c55e); border-radius:50%;
+      display:flex; align-items:center; justify-content:center; margin:0 auto 1.25rem;
+      animation:success-pop 0.5s cubic-bezier(0.175,0.885,0.32,1.275);
+    }
+    .success-title    { font-family:'Outfit',sans-serif; margin:0 0 0.5rem; font-size:1.5rem; }
+    .success-desc     { color:var(--text-light); font-size:0.9rem; margin:0 0 0.4rem; }
+    .success-note     { color:var(--text-muted); font-size:0.85rem; margin:0 0 1rem; }
+    .success-redirect { color:var(--text-muted); font-size:0.8rem; margin-bottom:1.5rem; }
+
+    /* ── Dark mode overrides ── */
+    body.dark-mode .im-box        { background:#1e293b !important; }
+    body.dark-mode .mf-input,
+    body.dark-mode .otp-box       { background:#0f172a !important; color:#e2e8f0 !important; border-color:#334155 !important; }
+    body.dark-mode .mf-file-zone  { background:#0f172a !important; border-color:#334155 !important; }
+    body.dark-mode .mf-label,
+    body.dark-mode .im-title      { color:#e2e8f0 !important; }
+    body.dark-mode .im-subtitle,
+    body.dark-mode .otp-subtext   { color:#94a3b8 !important; }
+    body.dark-mode .otp-box.otp-filled { background:rgba(20,184,166,0.12) !important; }
+
+    /* ── Page layout ── */
+    #mainLayout { display:grid; grid-template-columns:260px 1fr; gap:var(--spacing-3xl); }
+    @media (max-width:900px) {
+      #mainLayout                { grid-template-columns:1fr !important; }
+      #mainLayout > aside        { display:none; }
+    }
+    @media (max-width:640px) {
+      .search-container          { flex-direction:column !important; gap:0.75rem !important; }
+      .search-filters            { width:100% !important; flex-wrap:wrap !important; }
+      .search-filters select     { flex:1 1 auto !important; min-width:0 !important; }
+    }
+    @media (max-width:480px) { .card { padding:1.25rem !important; } }
+
+    /* ── Modal responsive ── */
+    @media (max-width:600px) {
+      .im-wrap               { padding:0.5rem 0.4rem; }
+      .im-header             { padding:0.9rem 1rem 0; }
+      .im-body               { padding:0 1rem 1.2rem; }
+      .mf-input              { font-size:16px !important; }
+      .im-title              { font-size:1rem !important; }
+    }
+    @media (max-width:380px) {
+      .im-header             { padding:0.75rem 0.75rem 0; }
+      .im-body               { padding:0 0.75rem 1rem; }
+    }
+
+    /* ── Hero text responsive ── */
+    @media (max-width:768px) { section h1 { font-size:2rem !important; }   section p { font-size:1rem !important; } }
+    @media (max-width:480px) { section h1 { font-size:1.6rem !important; } }
+  </style>
+
+  <!-- ════════════════════════════════════
+       Modal JS — OTP system + form logic
+  ════════════════════════════════════ -->
+  <script>
+  (function () {
+    'use strict';
+
+    /*
+      Development Mode — OTP validation disabled for localhost testing.
+      IS_LOCALHOST = true when running on localhost / 127.0.0.1.
+      When true, any 6-digit number entered by the user is accepted as valid.
+      In production, replace the auto-verify block inside verifyOtp() with
+      a real API call:  POST /api/auth/verify-otp  { email, code }
+    */
+    var IS_LOCALHOST = ['localhost', '127.0.0.1', '0.0.0.0', ''].indexOf(location.hostname) !== -1;
+
+    /* ── DOM refs ── */
+    var modal        = document.getElementById('internModal');
+    var modalBox     = document.getElementById('internModalBox');
+    var step1        = document.getElementById('modalStep1');
+    var step2        = document.getElementById('modalStep2');
+    var step3        = document.getElementById('modalStep3');
+    var closeBtn     = document.getElementById('modalCloseBtn');
+    var otpBackBtn   = document.getElementById('otpBackBtn');
+    var successClose = document.getElementById('successCloseBtn');
+
+    var lastFocused  = null; /* element focused before modal opened */
+    var redirectTimer = null;
+
+    /* ── Focus-trap helper ── */
+    function getFocusable() {
+      return Array.prototype.slice.call(
+        modalBox.querySelectorAll(
+          'button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])'
+        )
+      );
+    }
+    function onKeyDown(e) {
+      if (e.key === 'Escape') { closeInternModal(); return; }
+      if (e.key !== 'Tab') return;
+      var els = getFocusable();
+      if (!els.length) return;
+      var first = els[0], last = els[els.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+      }
+    }
+
+    /* ── Show a specific step ── */
+    function showStep(n) {
+      step1.style.display = (n === 1) ? '' : 'none';
+      step2.style.display = (n === 2) ? '' : 'none';
+      step3.style.display = (n === 3) ? '' : 'none';
+    }
+
+    /* ── Open modal ── */
+    window.openInternModal = function (title, company) {
+      lastFocused = document.activeElement;
+
+      document.getElementById('modalInternTitle').textContent   = title;
+      document.getElementById('modalInternCompany').textContent = company;
+
+      /* Pre-fill fields if user is logged in */
+      try {
+        var user = JSON.parse(localStorage.getItem('user') || 'null');
+        if (user) {
+          document.getElementById('internName').value  = user.fullName || '';
+          document.getElementById('internEmail').value = user.email    || '';
+        }
+      } catch (_) {}
+
+      /* Reset to step 1 */
+      showStep(1);
+      document.getElementById('internApplyForm').reset();
+      document.getElementById('resumeFileName').textContent = 'No file chosen';
+      clearFormErrors();
+      if (redirectTimer) { clearTimeout(redirectTimer); redirectTimer = null; }
+
+      modal.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+
+      requestAnimationFrame(function () {
+        modal.classList.add('im-open');
+        modalBox.classList.add('im-slide');
+      });
+
+      setTimeout(function () {
+        var first = getFocusable()[0];
+        if (first) first.focus();
+      }, 80);
+
+      document.addEventListener('keydown', onKeyDown);
+    };
+
+    /* ── Close modal ── */
+    window.closeInternModal = function () {
+      modal.classList.remove('im-open');
+      modalBox.classList.remove('im-slide');
+      document.removeEventListener('keydown', onKeyDown);
+      if (redirectTimer) { clearTimeout(redirectTimer); redirectTimer = null; }
+      setTimeout(function () {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+        if (lastFocused && lastFocused.focus) lastFocused.focus();
+      }, 220);
+    };
+
+    /* ── Close on backdrop click ── */
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeInternModal();
+    });
+    closeBtn.addEventListener('click', closeInternModal);
+    otpBackBtn.addEventListener('click', function () { showStep(1); });
+    successClose.addEventListener('click', function () {
+      closeInternModal();
+      window.location.href = 'internships-premium.html';
+    });
+
+    /* ── Wire "Apply Now" buttons on cards ── */
+    document.querySelectorAll('[data-searchable] .btn-primary').forEach(function (btn) {
+      var card    = btn.closest('[data-searchable]');
+      var title   = card.dataset.title   || 'Internship';
+      var company = card.dataset.company || '';
+      btn.addEventListener('click', function () { openInternModal(title, company); });
+    });
+
+    /* ── Save (heart) buttons ── */
+    document.querySelectorAll('.btn-icon[aria-label="Save"]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var saved = btn.dataset.saved === 'true';
+        btn.dataset.saved = saved ? 'false' : 'true';
+        btn.style.background = saved ? 'rgba(80,200,120,0.1)' : 'rgba(80,200,120,0.25)';
+        if (typeof showToast === 'function') showToast(saved ? 'Removed from saved' : 'Internship saved!', saved ? 'info' : 'success');
+      });
+    });
+
+    /* ── Resume file chooser ── */
+    document.getElementById('resumePickBtn').addEventListener('click', function () {
+      document.getElementById('internResumeFile').click();
+    });
+    document.getElementById('internResumeFile').addEventListener('change', function (e) {
+      var f = e.target.files[0];
+      document.getElementById('resumeFileName').textContent = f ? f.name : 'No file chosen';
+    });
+
+    /* ── Form error helpers ── */
+    function clearFormErrors() {
+      ['errName','errEmail','errCollege','errPhone','errResume'].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) el.textContent = '';
+      });
+      document.querySelectorAll('.mf-input,.mf-file-zone').forEach(function (el) {
+        el.classList.remove('mf-error');
+      });
+    }
+    function markErr(inputId, errId, msg) {
+      var input = document.getElementById(inputId);
+      var err   = document.getElementById(errId);
+      if (input) input.classList.add('mf-error');
+      if (err)   err.textContent = msg;
+    }
+
+    /* ── Step 1: submit application form ── */
+    document.getElementById('internApplyForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      clearFormErrors();
+
+      var name    = document.getElementById('internName').value.trim();
+      var email   = document.getElementById('internEmail').value.trim();
+      var college = document.getElementById('internCollege').value.trim();
+      var phone   = document.getElementById('internPhone').value.trim();
+      var resume  = document.getElementById('internResumeFile').files[0];
+
+      var valid = true;
+      if (!name)    { markErr('internName',    'errName',    'Full name is required');             valid = false; }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+                    { markErr('internEmail',   'errEmail',   'Enter a valid email address');       valid = false; }
+      if (!college) { markErr('internCollege', 'errCollege', 'College / University is required'); valid = false; }
+      if (!phone || phone.replace(/\D/g,'').length < 7)
+                    { markErr('internPhone',   'errPhone',   'Enter a valid phone number');        valid = false; }
+      if (!resume)  {
+        document.getElementById('errResume').textContent = 'Please upload your resume';
+        document.getElementById('resumeZone').classList.add('mf-error');
+        valid = false;
+      }
+      if (!valid) return;
+
+      /* Show loading state */
+      var submitBtn = document.getElementById('internSubmitBtn');
+      document.getElementById('internBtnText').style.display    = 'none';
+      document.getElementById('internBtnSpinner').style.display = '';
+      submitBtn.disabled = true;
+
+      /* Best-effort submit to backend */
+      try {
+        await fetch('/api/applications', {
+          method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({
+            type:'internship',
+            title:   document.getElementById('modalInternTitle').textContent,
+            company: document.getElementById('modalInternCompany').textContent,
+            fullName: name, email: email, college: college, phone: phone,
+            coverLetter: document.getElementById('internCover').value.trim(),
+          }),
+        });
+      } catch (_) { /* backend may be offline — continue to OTP step */ }
+
+      document.getElementById('internBtnText').style.display    = '';
+      document.getElementById('internBtnSpinner').style.display = 'none';
+      submitBtn.disabled = false;
+
+      /* Set email display in OTP step */
+      document.getElementById('otpEmailDisplay').textContent = email;
+
+      /* Generate a random 6-digit demo OTP for display */
+      var demoOtp = String(Math.floor(100000 + Math.random() * 900000));
+      document.getElementById('demoOtpCode').textContent = demoOtp;
+
+      showStep(2);
+      resetOtpBoxes();
+      setTimeout(function () { document.getElementById('otp1').focus(); }, 60);
+    });
+
+    /* ════════════════════════════════════════════
+       OTP Input Behavior
+       • Auto-focus next box after each digit
+       • Backspace: clear current or move to previous
+       • Arrow keys: navigate between boxes
+       • Paste: fill all 6 boxes from clipboard
+       • Auto-verify on localhost when all 6 filled
+    ════════════════════════════════════════════ */
+    var otpBoxIds = ['otp1','otp2','otp3','otp4','otp5','otp6'];
+    var otpBoxes  = otpBoxIds.map(function (id) { return document.getElementById(id); });
+
+    function resetOtpBoxes() {
+      otpBoxes.forEach(function (b) { b.value = ''; b.classList.remove('otp-filled','otp-error'); });
+      document.getElementById('otpErrorMsg').style.display = 'none';
+    }
+
+    function getOtpValue() { return otpBoxes.map(function (b) { return b.value; }).join(''); }
+
+    /* Development Mode — OTP validation disabled for localhost testing */
+    function checkAutoVerify() {
+      if (!IS_LOCALHOST) return;
+      var val = getOtpValue();
+      if (val.length === 6 && /^\d{6}$/.test(val)) {
+        setTimeout(verifyOtp, 100);
+      }
+    }
+
+    otpBoxes.forEach(function (box, idx) {
+
+      box.addEventListener('input', function (e) {
+        var v = e.target.value.replace(/\D/g, '');
+        box.value = v ? v[v.length - 1] : '';
+        box.classList.toggle('otp-filled', !!box.value);
+        if (box.value && idx < 5) otpBoxes[idx + 1].focus();
+        checkAutoVerify();
+      });
+
+      box.addEventListener('keydown', function (e) {
+        if (e.key === 'Backspace') {
+          if (!box.value && idx > 0) {
+            otpBoxes[idx - 1].value = '';
+            otpBoxes[idx - 1].classList.remove('otp-filled');
+            otpBoxes[idx - 1].focus();
+          } else {
+            box.value = '';
+            box.classList.remove('otp-filled');
+          }
+        }
+        if (e.key === 'ArrowLeft'  && idx > 0) otpBoxes[idx - 1].focus();
+        if (e.key === 'ArrowRight' && idx < 5) otpBoxes[idx + 1].focus();
+      });
+
+      /* Paste support: fill all 6 boxes from pasted digits */
+      box.addEventListener('paste', function (e) {
+        e.preventDefault();
+        var pasted = (e.clipboardData || window.clipboardData)
+          .getData('text').replace(/\D/g,'').slice(0, 6);
+        pasted.split('').forEach(function (ch, i) {
+          if (otpBoxes[i]) { otpBoxes[i].value = ch; otpBoxes[i].classList.add('otp-filled'); }
+        });
+        var next = Math.min(pasted.length, 5);
+        otpBoxes[next].focus();
+        checkAutoVerify();
+      });
+
+    });
+
+    /* ── Manual verify button ── */
+    document.getElementById('verifyOtpBtn').addEventListener('click', verifyOtp);
+
+    function verifyOtp() {
+      var val    = getOtpValue();
+      var errMsg = document.getElementById('otpErrorMsg');
+      otpBoxes.forEach(function (b) { b.classList.remove('otp-error'); });
+
+      if (val.length < 6 || !/^\d{6}$/.test(val)) {
+        otpBoxes.forEach(function (b) { if (!b.value) b.classList.add('otp-error'); });
+        errMsg.textContent    = 'Please enter all 6 digits.';
+        errMsg.style.display  = 'block';
+        return;
+      }
+
+      /*
+        Development Mode — OTP validation disabled for localhost testing.
+        Accept any 6-digit number on localhost without backend verification.
+      */
+      if (!IS_LOCALHOST) {
+        errMsg.textContent   = 'OTP verification requires backend integration (not on localhost).';
+        errMsg.style.display = 'block';
+        return;
+      }
+
+      /* Show verify spinner */
+      var vBtn = document.getElementById('verifyOtpBtn');
+      document.getElementById('verifyBtnText').style.display    = 'none';
+      document.getElementById('verifyBtnSpinner').style.display = '';
+      vBtn.disabled = true;
+
+      /* Simulate brief verification delay, then show success */
+      setTimeout(function () {
+        document.getElementById('verifyBtnText').style.display    = '';
+        document.getElementById('verifyBtnSpinner').style.display = 'none';
+        vBtn.disabled = false;
+
+        showStep(3);
+
+        /* Auto-redirect after 3 seconds */
+        redirectTimer = setTimeout(function () {
+          closeInternModal();
+          window.location.href = 'internships-premium.html';
+        }, 3000);
+      }, 850);
+    }
+
+  })();
+  </script>
+</body>
+</html>

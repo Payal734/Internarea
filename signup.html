@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8fafc">
+  <title>Create Account — InternArea</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/darkmode.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/loaders.css">
+
+  <style>
+    /* ---- Auth Page Layout ---- */
+    .auth-page {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* ---- Left Panel ---- */
+    .auth-left {
+      position: relative;
+      background: linear-gradient(135deg, #0f172a 0%, #1a3a34 50%, #2d1b4e 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem;
+      overflow: hidden;
+    }
+
+    .auth-left::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(80,200,120,0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(20, 184, 166, 0.2) 0%, transparent 50%);
+    }
+
+    .auth-left-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: #fff;
+      max-width: 420px;
+    }
+
+    .auth-left-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.75rem;
+      font-weight: 800;
+      font-family: 'Outfit', sans-serif;
+      background: linear-gradient(135deg, #50C878, #14b8a6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 3rem;
+      text-decoration: none;
+    }
+
+    .auth-left-title {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 1.25rem;
+      color: #fff;
+    }
+
+    .auth-left-desc {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 2rem;
+    }
+
+    /* Features list */
+    .auth-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2rem;
+      text-align: left;
+    }
+
+    .auth-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.625rem 0;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .auth-features li:last-child {
+      border-bottom: none;
+    }
+
+    .feat-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: rgba(80,200,120,0.2);
+      border: 1px solid rgba(80,200,120,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.75rem;
+    }
+
+    .auth-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .auth-stat {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      padding: 1rem 0.5rem;
+      text-align: center;
+    }
+
+    .auth-stat-value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      font-family: 'Outfit', sans-serif;
+      background: linear-gradient(135deg, #50C878, #14b8a6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .auth-stat-label {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.25rem;
+    }
+
+    /* Floating Blobs */
+    .auth-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      animation: blobFloat 6s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+    .auth-blob-1 { width:280px;height:280px;background:rgba(80,200,120,0.12);top:-80px;right:-80px; }
+    .auth-blob-2 { width:200px;height:200px;background:rgba(20,184,166,0.12);bottom:-60px;left:-60px;animation-delay:-3s; }
+
+    @keyframes blobFloat {
+      from { transform: translate(0,0) scale(1); }
+      to   { transform: translate(20px,20px) scale(1.08); }
+    }
+
+    /* ---- Right Panel ---- */
+    .auth-right {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 2.5rem 2rem;
+      background: var(--light-bg);
+      overflow-y: auto;
+    }
+
+    body.dark-mode .auth-right {
+      background: var(--dark-bg);
+    }
+
+    .auth-form-wrap {
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .auth-form-header {
+      margin-bottom: 1.75rem;
+    }
+
+    .auth-form-header h1 {
+      font-size: 1.875rem;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-dark);
+    }
+
+    body.dark-mode .auth-form-header h1 {
+      color: #e2e8f0;
+    }
+
+    .auth-form-header p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+    }
+
+    /* Social Login */
+    .social-login {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.625rem;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--border-light);
+      border-radius: 12px;
+      background: var(--light-card);
+      color: var(--text-dark);
+      font-weight: 500;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body.dark-mode .social-btn {
+      background: var(--dark-surface);
+      border-color: var(--border-dark);
+      color: #e2e8f0;
+    }
+
+    .social-btn:hover {
+      border-color: var(--primary-teal);
+      box-shadow: 0 4px 12px rgba(20,184,166,0.15);
+      transform: translateY(-1px);
+    }
+
+    /* Divider */
+    .auth-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+    .auth-divider::before,.auth-divider::after {
+      content:'';flex:1;height:1px;background:var(--border-light);
+    }
+    body.dark-mode .auth-divider::before,
+    body.dark-mode .auth-divider::after { background:var(--border-dark); }
+
+    /* Form Fields */
+    .form-group { margin-bottom: 1.125rem; }
+
+    .form-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 0.4rem;
+      font-family: 'Poppins', sans-serif;
+    }
+    body.dark-mode .form-label { color:#e2e8f0; }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.875rem;
+    }
+
+    .input-wrap { position: relative; }
+
+    .form-input {
+      width: 100%;
+      padding: 0.8125rem 1rem 0.8125rem 2.75rem;
+      border: 1.5px solid var(--border-light);
+      border-radius: 12px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.875rem;
+      color: var(--text-dark);
+      background: var(--light-card);
+      transition: all 0.2s ease;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    body.dark-mode .form-input {
+      background: var(--dark-surface);
+      border-color: var(--border-dark);
+      color: #e2e8f0;
+    }
+
+    .form-input::placeholder { color: var(--text-muted); }
+
+    .form-input:focus {
+      border-color: var(--primary-teal);
+      box-shadow: 0 0 0 3px rgba(20,184,166,0.12);
+    }
+
+    .form-input.error {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 3px rgba(239,68,68,0.1);
+    }
+
+    .form-input.success { border-color: #22c55e; }
+
+    .input-icon {
+      position: absolute;
+      left: 0.875rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .input-icon svg { width:18px;height:18px; }
+
+    .toggle-password {
+      position: absolute;
+      right: 0.875rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      padding: 0;
+      transition: color 0.2s;
+    }
+
+    .toggle-password:hover { color: var(--primary-teal); }
+    .toggle-password svg { width:18px;height:18px; }
+
+    .field-error {
+      font-size: 0.78rem;
+      color: #ef4444;
+      margin-top: 0.3rem;
+      display: none;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .field-error.show { display: flex; }
+
+    /* Role selector */
+    .role-select {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 1.125rem;
+    }
+
+    .role-option input[type="radio"] { display: none; }
+
+    .role-option label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.875rem 0.5rem;
+      border: 1.5px solid var(--border-light);
+      border-radius: 12px;
+      cursor: pointer;
+      background: var(--light-card);
+      transition: all 0.2s ease;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body.dark-mode .role-option label {
+      background: var(--dark-surface);
+      border-color: var(--border-dark);
+      color: rgba(255,255,255,0.6);
+    }
+
+    .role-option input[type="radio"]:checked + label {
+      border-color: var(--primary-teal);
+      background: rgba(20,184,166,0.06);
+      color: var(--primary-teal);
+      font-weight: 600;
+      box-shadow: 0 0 0 3px rgba(20,184,166,0.1);
+    }
+
+    .role-option label:hover {
+      border-color: var(--primary-teal);
+      transform: translateY(-1px);
+    }
+
+    .role-icon { font-size: 1.5rem; }
+
+    /* Password Strength */
+    .password-strength { margin-top: 0.5rem; }
+
+    .strength-bar {
+      height: 4px;
+      border-radius: 2px;
+      background: var(--border-light);
+      margin-bottom: 0.35rem;
+      overflow: hidden;
+    }
+
+    body.dark-mode .strength-bar { background: var(--border-dark); }
+
+    .strength-fill {
+      height: 100%;
+      border-radius: 2px;
+      width: 0%;
+      transition: width 0.35s ease, background 0.35s ease;
+    }
+
+    .strength-text { font-size: 0.75rem; color: var(--text-muted); }
+
+    /* Terms */
+    .terms-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.625rem;
+      margin-bottom: 1.25rem;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      cursor: pointer;
+    }
+
+    .terms-check input[type="checkbox"] {
+      margin-top: 2px;
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      accent-color: var(--primary-teal);
+      cursor: pointer;
+    }
+
+    .terms-check a {
+      color: var(--primary-teal);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .terms-check a:hover { text-decoration: underline; }
+
+    /* Submit Button */
+    .btn-auth {
+      width: 100%;
+      padding: 0.9375rem;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      background: linear-gradient(135deg, #50C878 0%, #14b8a6 100%);
+      color: white;
+      box-shadow: 0 4px 15px rgba(80,200,120,0.3);
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .btn-auth::before {
+      content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);
+      transition:left 0.5s;
+    }
+    .btn-auth:hover::before { left:100%; }
+
+    .btn-auth:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(80,200,120,0.4);
+    }
+
+    .btn-auth:active { transform: translateY(0); }
+
+    .btn-auth:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-spinner {
+      width:18px;height:18px;
+      border:2px solid rgba(255,255,255,0.4);
+      border-top-color:#fff;
+      border-radius:50%;
+      animation:spin 0.7s linear infinite;
+      display:none;
+    }
+
+    @keyframes spin { to { transform:rotate(360deg); } }
+
+    .btn-auth.loading .btn-text { display:none; }
+    .btn-auth.loading .btn-spinner { display:block; }
+
+    /* Footer Link */
+    .auth-footer-link {
+      text-align: center;
+      margin-top: 1.25rem;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    .auth-footer-link a {
+      color: var(--primary-teal);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .auth-footer-link a:hover { text-decoration: underline; }
+
+    /* Mobile Header */
+    .auth-mobile-header {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      background: rgba(248,250,252,0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-light);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    body.dark-mode .auth-mobile-header {
+      background: rgba(15,23,42,0.9);
+      border-bottom-color: var(--border-dark);
+    }
+
+    .auth-mobile-logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      font-family: 'Outfit', sans-serif;
+      background: linear-gradient(135deg, #14b8a6, #50C878);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+    }
+
+    /* Progress Steps */
+    .signup-steps {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 1.75rem;
+    }
+
+    .step-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.375rem;
+      flex: 1;
+    }
+
+    .step-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+      background: var(--light-bg);
+    }
+
+    body.dark-mode .step-circle {
+      background: var(--dark-bg);
+      border-color: var(--border-dark);
+    }
+
+    .step-circle.active {
+      border-color: var(--primary-teal);
+      color: var(--primary-teal);
+      background: rgba(20,184,166,0.1);
+    }
+
+    .step-circle.done {
+      border-color: #22c55e;
+      background: #22c55e;
+      color: #fff;
+    }
+
+    .step-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .step-label.active { color: var(--primary-teal); }
+
+    .step-line {
+      flex: 1;
+      height: 2px;
+      background: var(--border-light);
+      margin: 0 -2px;
+      margin-bottom: 1.375rem;
+      transition: background 0.3s ease;
+    }
+
+    body.dark-mode .step-line { background: var(--border-dark); }
+    .step-line.done { background: #22c55e; }
+
+    /* Success overlay */
+    .auth-success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 2rem 0;
+    }
+    .auth-success.show { display: flex; }
+
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #50C878, #14b8a6);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      animation: successPop 0.5s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    @keyframes successPop {
+      from { transform:scale(0);opacity:0; }
+      to   { transform:scale(1);opacity:1; }
+    }
+
+    /* OTP boxes */
+    .otp-inputs {
+      display: flex;
+      gap: 0.625rem;
+      justify-content: center;
+      margin: 1.5rem 0;
+    }
+    .otp-box {
+      width: clamp(38px, 11vw, 52px);
+      height: clamp(42px, 12vw, 56px);
+      border: 1.5px solid var(--border-light);
+      border-radius: 12px;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-dark);
+      background: var(--light-card);
+      outline: none;
+      transition: all 0.2s;
+    }
+    body.dark-mode .otp-box {
+      background: var(--dark-surface);
+      border-color: var(--border-dark);
+      color: #e2e8f0;
+    }
+    .otp-box:focus {
+      border-color: var(--primary-teal);
+      box-shadow: 0 0 0 3px rgba(20,184,166,0.12);
+    }
+    .otp-box.filled { border-color: var(--primary-teal); }
+    .otp-timer { text-align:center; font-size:0.875rem; color:var(--text-muted); margin-bottom:0.5rem; }
+    .otp-timer span { font-weight:700; color:var(--primary-teal); }
+    .otp-resend { text-align:center; font-size:0.875rem; color:var(--text-light); margin-bottom:1.5rem; }
+    .otp-resend button { background:none;border:none;color:var(--primary-teal);font-weight:600;cursor:pointer;font-family:inherit;font-size:inherit; }
+    .otp-resend button:disabled { color:var(--text-muted);cursor:not-allowed; }
+
+    /* OTP responsive */
+    @media (max-width: 420px) {
+      .otp-inputs { gap:0.4rem; margin:1.25rem 0; }
+      .otp-box    { font-size:1.2rem !important; }
+    }
+    @media (max-width: 340px) {
+      .otp-inputs { gap:0.25rem; }
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .auth-page { grid-template-columns:1fr;min-height:100vh; }
+      .auth-left { display:none; }
+      .auth-mobile-header { display:flex; }
+      .auth-right { padding:2rem 1.25rem;align-items:flex-start; }
+      .auth-form-wrap { max-width:100%;padding-top:1rem; }
+    }
+
+    @media (max-width: 520px) {
+      .social-login { grid-template-columns:1fr; }
+      .form-row-2 { grid-template-columns:1fr; }
+      .role-select { grid-template-columns:1fr 1fr; }
+    }
+
+    @media (max-width: 360px) {
+      .role-select { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page Loader -->
+  <div id="pageLoader" class="page-loader">
+    <div class="loader-logo">InternArea</div>
+    <div class="loader-ring"></div>
+    <div class="loader-dots">
+      <div class="loader-dot"></div>
+      <div class="loader-dot"></div>
+      <div class="loader-dot"></div>
+    </div>
+  </div>
+
+  <!-- Mobile Header -->
+  <header class="auth-mobile-header">
+    <a href="index-premium.html" class="auth-mobile-logo">
+      <svg width="22" height="22" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" style="display:inline;vertical-align:middle;margin-right:6px">
+        <defs><linearGradient id="mhLogo2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#14b8a6"/><stop offset="100%" style="stop-color:#50C878"/></linearGradient></defs>
+        <path d="M24 4L40 12V28C40 37.9 24 44 24 44S8 37.9 8 28V12L24 4Z" fill="url(#mhLogo2)"/>
+        <path d="M24 20L32 24V32C32 36 24 39 24 39S16 36 16 32V24L24 20Z" fill="white" opacity="0.25"/>
+      </svg>
+      InternArea
+    </a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+  </header>
+
+  <!-- Auth Layout -->
+  <div class="auth-page">
+
+    <!-- Left Panel -->
+    <div class="auth-left">
+      <div class="auth-blob auth-blob-1"></div>
+      <div class="auth-blob auth-blob-2"></div>
+
+      <div class="auth-left-content animate-fade-in-left">
+        <a href="index-premium.html" class="auth-left-logo">
+          <svg width="32" height="32" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="slGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#50C878"/><stop offset="100%" style="stop-color:#14b8a6"/></linearGradient></defs>
+            <path d="M24 4L40 12V28C40 37.9 24 44 24 44S8 37.9 8 28V12L24 4Z" fill="url(#slGrad)"/>
+            <path d="M24 20L32 24V32C32 36 24 39 24 39S16 36 16 32V24L24 20Z" fill="white" opacity="0.3"/>
+          </svg>
+          InternArea
+        </a>
+
+        <h2 class="auth-left-title">Start your career journey for free</h2>
+        <p class="auth-left-desc">Join 500,000+ students who found their internships, jobs, and courses on InternArea.</p>
+
+        <ul class="auth-features">
+          <li>
+            <div class="feat-icon">🎓</div>
+            <div>
+              <div style="font-weight:600;color:#fff;margin-bottom:2px">Exclusive Internships</div>
+              <div style="color:rgba(255,255,255,0.5);font-size:0.8rem">50,000+ active openings from top companies</div>
+            </div>
+          </li>
+          <li>
+            <div class="feat-icon">📚</div>
+            <div>
+              <div style="font-weight:600;color:#fff;margin-bottom:2px">Premium Courses</div>
+              <div style="color:rgba(255,255,255,0.5);font-size:0.8rem">Industry-certified programs with placement support</div>
+            </div>
+          </li>
+          <li>
+            <div class="feat-icon">💼</div>
+            <div>
+              <div style="font-weight:600;color:#fff;margin-bottom:2px">Job Opportunities</div>
+              <div style="color:rgba(255,255,255,0.5);font-size:0.8rem">Full-time roles at startups and Fortune 500 companies</div>
+            </div>
+          </li>
+          <li>
+            <div class="feat-icon">🤖</div>
+            <div>
+              <div style="font-weight:600;color:#fff;margin-bottom:2px">AI Career Assistant</div>
+              <div style="color:rgba(255,255,255,0.5);font-size:0.8rem">Smart resume builder & personalized job matching</div>
+            </div>
+          </li>
+        </ul>
+
+        <div class="auth-stats">
+          <div class="auth-stat">
+            <div class="auth-stat-value">500K+</div>
+            <div class="auth-stat-label">Students</div>
+          </div>
+          <div class="auth-stat">
+            <div class="auth-stat-value">10K+</div>
+            <div class="auth-stat-label">Companies</div>
+          </div>
+          <div class="auth-stat">
+            <div class="auth-stat-value">Free</div>
+            <div class="auth-stat-label">To Join</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="auth-right">
+      <div class="auth-form-wrap animate-fade-in-right">
+
+        <!-- Theme toggle desktop -->
+        <div style="display:flex;justify-content:flex-end;margin-bottom:1.25rem" class="md-only">
+          <button class="theme-toggle" id="themeToggleDesktop" aria-label="Toggle theme">🌙</button>
+        </div>
+
+        <!-- Form Header -->
+        <div class="auth-form-header">
+          <h1>Create your free account</h1>
+          <p>Already have an account? <a href="login.html" style="color:var(--primary-teal);font-weight:600;text-decoration:none">Sign in</a></p>
+        </div>
+
+        <!-- Progress Steps -->
+        <div class="signup-steps" id="signupSteps">
+          <div class="step-item">
+            <div class="step-circle active" id="step1Circle">1</div>
+            <div class="step-label active" id="step1Label">Account</div>
+          </div>
+          <div class="step-line" id="line1"></div>
+          <div class="step-item">
+            <div class="step-circle" id="step2Circle">2</div>
+            <div class="step-label" id="step2Label">Profile</div>
+          </div>
+          <div class="step-line" id="line3"></div>
+          <div class="step-item">
+            <div class="step-circle" id="step4Circle">3</div>
+            <div class="step-label" id="step4Label">Done</div>
+          </div>
+        </div>
+
+        <!-- Social Signup -->
+        <div class="social-login" id="socialSection">
+          <button class="social-btn" id="googleBtn" type="button">
+            <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+            Sign up with Google
+          </button>
+          <button class="social-btn" id="githubBtn" type="button">
+            <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            Sign up with GitHub
+          </button>
+        </div>
+
+        <div class="auth-divider" id="dividerSection">or sign up with email</div>
+
+        <!-- STEP 1: Account Info -->
+        <form id="step1Form" novalidate>
+
+          <div class="form-row-2">
+            <!-- First Name -->
+            <div class="form-group">
+              <label class="form-label" for="firstName">First name</label>
+              <div class="input-wrap">
+                <span class="input-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </span>
+                <input type="text" id="firstName" class="form-input" placeholder="Rahul" autocomplete="given-name">
+              </div>
+              <div class="field-error" id="firstNameError">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <span></span>
+              </div>
+            </div>
+
+            <!-- Last Name -->
+            <div class="form-group">
+              <label class="form-label" for="lastName">Last name</label>
+              <div class="input-wrap">
+                <span class="input-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </span>
+                <input type="text" id="lastName" class="form-input" placeholder="Sharma" autocomplete="family-name">
+              </div>
+              <div class="field-error" id="lastNameError">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <span></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label class="form-label" for="signupEmail">Email address</label>
+            <div class="input-wrap">
+              <span class="input-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              </span>
+              <input type="email" id="signupEmail" class="form-input" placeholder="you@example.com" autocomplete="email">
+            </div>
+            <div class="field-error" id="signupEmailError">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <span></span>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <label class="form-label" for="signupPassword">Password</label>
+            <div class="input-wrap">
+              <span class="input-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </span>
+              <input type="password" id="signupPassword" class="form-input" placeholder="Min. 8 characters" autocomplete="new-password">
+              <button type="button" class="toggle-password" id="toggleSignupPwd" aria-label="Show password">
+                <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="eye-off-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+              </button>
+            </div>
+            <!-- Strength indicator -->
+            <div class="password-strength">
+              <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
+              <div class="strength-text" id="strengthText">Password strength</div>
+            </div>
+            <div class="field-error" id="signupPasswordError">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <span></span>
+            </div>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="form-group">
+            <label class="form-label" for="confirmPassword">Confirm password</label>
+            <div class="input-wrap">
+              <span class="input-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </span>
+              <input type="password" id="confirmPassword" class="form-input" placeholder="Repeat your password" autocomplete="new-password">
+              <button type="button" class="toggle-password" id="toggleConfirmPwd" aria-label="Show password">
+                <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="eye-off-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+              </button>
+            </div>
+            <div class="field-error" id="confirmPasswordError">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <span></span>
+            </div>
+          </div>
+
+          <!-- Terms -->
+          <label class="terms-check">
+            <input type="checkbox" id="termsCheck">
+            <span>I agree to InternArea's <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></span>
+          </label>
+          <div class="field-error" id="termsError">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>You must accept the terms to continue.</span>
+          </div>
+
+          <button type="submit" class="btn-auth" id="step1Btn">
+            <span class="btn-text">Continue →</span>
+            <span class="btn-spinner"></span>
+          </button>
+
+        </form>
+
+        <!-- STEP 2: Profile Info -->
+        <form id="step2Form" novalidate style="display:none">
+
+          <p style="font-size:0.875rem;color:var(--text-light);margin-bottom:1.25rem">Tell us a bit about yourself so we can personalise your experience.</p>
+
+          <!-- I am a -->
+          <div class="form-group">
+            <label class="form-label">I am a</label>
+            <div class="role-select">
+              <div class="role-option">
+                <input type="radio" name="role" id="roleStudent" value="student" checked>
+                <label for="roleStudent">
+                  <span class="role-icon">🎓</span>
+                  Student
+                </label>
+              </div>
+              <div class="role-option">
+                <input type="radio" name="role" id="roleFresher" value="fresher">
+                <label for="roleFresher">
+                  <span class="role-icon">🚀</span>
+                  Fresher
+                </label>
+              </div>
+              <div class="role-option">
+                <input type="radio" name="role" id="roleProfessional" value="professional">
+                <label for="roleProfessional">
+                  <span class="role-icon">💼</span>
+                  Professional
+                </label>
+              </div>
+              <div class="role-option">
+                <input type="radio" name="role" id="roleEmployer" value="employer">
+                <label for="roleEmployer">
+                  <span class="role-icon">🏢</span>
+                  Employer
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- College -->
+          <div class="form-group" id="collegeGroup">
+            <label class="form-label" for="college">College / University</label>
+            <div class="input-wrap">
+              <span class="input-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              </span>
+              <input type="text" id="college" class="form-input" placeholder="e.g. IIT Delhi, BITS Pilani…">
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="form-group">
+            <label class="form-label" for="phone">Phone number <span style="color:var(--text-muted);font-weight:400">(optional)</span></label>
+            <div class="input-wrap">
+              <span class="input-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.66h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8 9.91a16 16 0 0 0 6.07 6.07l.79-.79a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 17.17z"/></svg>
+              </span>
+              <input type="tel" id="phone" class="form-input" placeholder="+91 98765 43210" autocomplete="tel">
+            </div>
+            <div class="field-error" id="phoneError">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <span></span>
+            </div>
+          </div>
+
+          <!-- City -->
+          <div class="form-group">
+            <label class="form-label" for="city">City</label>
+            <div class="input-wrap">
+              <span class="input-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </span>
+              <input type="text" id="city" class="form-input" placeholder="e.g. Mumbai, Bangalore…">
+            </div>
+          </div>
+
+          <div style="display:flex;gap:0.75rem;margin-top:1.25rem">
+            <button type="button" class="btn btn-secondary" id="backBtn" style="flex:0 0 auto;padding:0.9rem 1.25rem">← Back</button>
+            <button type="submit" class="btn-auth" id="step2Btn" style="flex:1">
+              <span class="btn-text">Create Account</span>
+              <span class="btn-spinner"></span>
+            </button>
+          </div>
+
+        </form>
+
+        <!-- Sign in link -->
+        <div class="auth-footer-link" id="footerLink">
+          Already have an account? <a href="login.html">Sign in</a>
+        </div>
+
+        <!-- Success State -->
+        <div class="auth-success" id="signupSuccess">
+          <div class="success-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h2 style="font-size:1.625rem;margin-bottom:0.5rem;font-family:'Outfit',sans-serif">Account created!</h2>
+          <p style="color:var(--text-light);margin-bottom:0.5rem;font-size:0.95rem">Welcome to InternArea, <strong id="welcomeName"></strong>!</p>
+          <p style="color:var(--text-muted);font-size:0.875rem;margin-bottom:1.75rem">Check your inbox to verify your email address.</p>
+          <a href="index-premium.html" class="btn-auth" style="max-width:260px;text-decoration:none;justify-content:center">
+            Go to Dashboard →
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="js/theme.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+  (function () {
+    'use strict';
+
+    /* ---- Theme toggles ---- */
+    const themeToggleDesktop = document.getElementById('themeToggleDesktop');
+    const themeToggleMobile  = document.getElementById('themeToggle');
+
+    function syncThemeIcons() {
+      const isDark = document.body.classList.contains('dark-mode');
+      if (themeToggleDesktop) themeToggleDesktop.textContent = isDark ? '☀️' : '🌙';
+      if (themeToggleMobile)  themeToggleMobile.textContent  = isDark ? '☀️' : '🌙';
+    }
+
+    [themeToggleDesktop, themeToggleMobile].forEach(btn => {
+      if (!btn) return;
+      btn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        syncThemeIcons();
+      });
+    });
+
+    syncThemeIcons();
+
+    /* ---- Password Visibility Toggles ---- */
+    function makeToggle(btnId, inputId) {
+      const btn = document.getElementById(btnId);
+      const inp = document.getElementById(inputId);
+      if (!btn || !inp) return;
+      btn.addEventListener('click', () => {
+        const isText = inp.type === 'text';
+        inp.type = isText ? 'password' : 'text';
+        btn.querySelector('.eye-icon').style.display    = isText ? '' : 'none';
+        btn.querySelector('.eye-off-icon').style.display = isText ? 'none' : '';
+        btn.setAttribute('aria-label', isText ? 'Show password' : 'Hide password');
+      });
+    }
+
+    makeToggle('toggleSignupPwd', 'signupPassword');
+    makeToggle('toggleConfirmPwd', 'confirmPassword');
+
+    /* ---- Password Strength ---- */
+    const pwdInput     = document.getElementById('signupPassword');
+    const strengthFill = document.getElementById('strengthFill');
+    const strengthText = document.getElementById('strengthText');
+
+    function calcStrength(pwd) {
+      let score = 0;
+      if (pwd.length >= 8)  score++;
+      if (pwd.length >= 12) score++;
+      if (/[A-Z]/.test(pwd)) score++;
+      if (/[0-9]/.test(pwd)) score++;
+      if (/[^A-Za-z0-9]/.test(pwd)) score++;
+      return score; // 0-5
+    }
+
+    if (pwdInput) {
+      pwdInput.addEventListener('input', () => {
+        const score = calcStrength(pwdInput.value);
+        const pct   = (score / 5) * 100;
+        const colors = ['#ef4444', '#f97316', '#eab308', '#22c55e', '#22c55e'];
+        const labels = ['Very weak', 'Weak', 'Fair', 'Strong', 'Very strong'];
+        strengthFill.style.width    = `${pct}%`;
+        strengthFill.style.background = colors[Math.max(0, score - 1)] || '#e2e8f0';
+        strengthText.textContent    = pwdInput.value ? labels[Math.max(0, score - 1)] : 'Password strength';
+        strengthText.style.color    = pwdInput.value ? (colors[Math.max(0, score - 1)] || '') : '';
+      });
+    }
+
+    /* ---- Validation helpers ---- */
+    function showError(fieldId, errorId, msg) {
+      const f = document.getElementById(fieldId);
+      const e = document.getElementById(errorId);
+      if (!f || !e) return;
+      f.classList.add('error'); f.classList.remove('success');
+      e.querySelector('span').textContent = msg;
+      e.classList.add('show');
+    }
+
+    function showSuccess(fieldId, errorId) {
+      const f = document.getElementById(fieldId);
+      const e = document.getElementById(errorId);
+      if (!f || !e) return;
+      f.classList.remove('error'); f.classList.add('success');
+      e.classList.remove('show');
+    }
+
+    function clearState(fieldId, errorId) {
+      const f = document.getElementById(fieldId);
+      const e = document.getElementById(errorId);
+      if (!f || !e) return;
+      f.classList.remove('error', 'success');
+      e.classList.remove('show');
+    }
+
+    /* Live blur validation */
+    const liveRules = [
+      { id: 'firstName',       errId: 'firstNameError',       validate: v => v ? null : 'First name is required.' },
+      { id: 'lastName',        errId: 'lastNameError',        validate: v => v ? null : 'Last name is required.' },
+      { id: 'signupEmail',     errId: 'signupEmailError',     validate: v => !v ? 'Email is required.' : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? 'Invalid email address.' : null },
+      { id: 'signupPassword',  errId: 'signupPasswordError',  validate: v => !v ? 'Password is required.' : v.length < 8 ? 'Minimum 8 characters.' : null },
+      { id: 'confirmPassword', errId: 'confirmPasswordError', validate: v => {
+        const pwd = document.getElementById('signupPassword');
+        return !v ? 'Please confirm your password.' : (pwd && v !== pwd.value) ? 'Passwords do not match.' : null;
+      }},
+    ];
+
+    liveRules.forEach(({ id, errId, validate }) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener('blur', () => {
+        const err = validate(el.value.trim());
+        err ? showError(id, errId, err) : showSuccess(id, errId);
+      });
+      el.addEventListener('input', () => clearState(id, errId));
+    });
+
+    /* ---- Role selector: hide/show college field ---- */
+    document.querySelectorAll('input[name="role"]').forEach(radio => {
+      radio.addEventListener('change', () => {
+        const collegeGroup = document.getElementById('collegeGroup');
+        if (!collegeGroup) return;
+        collegeGroup.style.display = ['student', 'fresher'].includes(radio.value) ? '' : 'none';
+      });
+    });
+
+    /* ---- Step Progress ---- */
+    function goToStep2() {
+      document.getElementById('step1Circle').classList.add('done');
+      document.getElementById('step1Circle').innerHTML = '✓';
+      document.getElementById('step1Label').classList.remove('active');
+      document.getElementById('line1').classList.add('done');
+      document.getElementById('step2Circle').classList.add('active');
+      document.getElementById('step2Label').classList.add('active');
+    }
+
+    function goToDone() {
+      document.getElementById('step2Circle').classList.add('done');
+      document.getElementById('step2Circle').innerHTML = '✓';
+      document.getElementById('step2Label').classList.remove('active');
+      document.getElementById('line3').classList.add('done');
+      document.getElementById('step4Circle').classList.add('active', 'done');
+      document.getElementById('step4Circle').innerHTML = '✓';
+      document.getElementById('step4Label').classList.add('active');
+    }
+
+    /* ---- Step 1 Submit ---- */
+    const step1Form = document.getElementById('step1Form');
+    const step1Btn  = document.getElementById('step1Btn');
+
+    if (step1Form) {
+      step1Form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const fn    = document.getElementById('firstName').value.trim();
+        const ln    = document.getElementById('lastName').value.trim();
+        const email = document.getElementById('signupEmail').value.trim();
+        const pwd   = document.getElementById('signupPassword').value;
+        const cpwd  = document.getElementById('confirmPassword').value;
+        const terms = document.getElementById('termsCheck').checked;
+        const termsErr = document.getElementById('termsError');
+        let valid = true;
+
+        if (!fn)                             { showError('firstName','firstNameError','First name is required.'); valid=false; }
+        if (!ln)                             { showError('lastName','lastNameError','Last name is required.'); valid=false; }
+        if (!email)                          { showError('signupEmail','signupEmailError','Email is required.'); valid=false; }
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('signupEmail','signupEmailError','Invalid email address.'); valid=false; }
+        if (!pwd)                            { showError('signupPassword','signupPasswordError','Password is required.'); valid=false; }
+        else if (pwd.length < 8)             { showError('signupPassword','signupPasswordError','Minimum 8 characters.'); valid=false; }
+        if (!cpwd)                           { showError('confirmPassword','confirmPasswordError','Please confirm your password.'); valid=false; }
+        else if (cpwd !== pwd)               { showError('confirmPassword','confirmPasswordError','Passwords do not match.'); valid=false; }
+
+        if (!terms) {
+          if (termsErr) termsErr.classList.add('show');
+          valid = false;
+        } else {
+          if (termsErr) termsErr.classList.remove('show');
+        }
+
+        if (!valid) return;
+
+        /* Switch to step 2 */
+        step1Btn.classList.add('loading');
+        step1Btn.disabled = true;
+
+        setTimeout(() => {
+          step1Btn.classList.remove('loading');
+          step1Btn.disabled = false;
+
+          step1Form.style.display  = 'none';
+          document.getElementById('socialSection').style.display = 'none';
+          document.getElementById('dividerSection').style.display = 'none';
+          document.getElementById('step2Form').style.display = '';
+
+          goToStep2();
+        }, 600);
+      });
+    }
+
+    /* ---- Back Button ---- */
+    const backBtn = document.getElementById('backBtn');
+    if (backBtn) {
+      backBtn.addEventListener('click', () => {
+        document.getElementById('step2Form').style.display  = 'none';
+        document.getElementById('step1Form').style.display  = '';
+        document.getElementById('socialSection').style.display = '';
+        document.getElementById('dividerSection').style.display = '';
+
+        /* Reset step indicators */
+        const c1 = document.getElementById('step1Circle');
+        c1.classList.remove('done'); c1.innerHTML = '1';
+        document.getElementById('step1Label').classList.add('active');
+        document.getElementById('line1').classList.remove('done');
+        const c2 = document.getElementById('step2Circle');
+        c2.classList.remove('active', 'done'); c2.innerHTML = '2';
+        document.getElementById('step2Label').classList.remove('active');
+      });
+    }
+
+    /* ---- Step 2 Submit — register directly (no OTP) ---- */
+    const step2Form = document.getElementById('step2Form');
+    const step2Btn  = document.getElementById('step2Btn');
+
+    if (step2Form) {
+      step2Form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const phone = document.getElementById('phone').value.trim();
+        if (phone && !/^[\+\d\s\-()]{7,15}$/.test(phone)) {
+          showError('phone', 'phoneError', 'Please enter a valid phone number.');
+          return;
+        }
+
+        step2Btn.classList.add('loading');
+        step2Btn.disabled = true;
+
+        const firstName = document.getElementById('firstName').value.trim();
+        const lastName  = document.getElementById('lastName').value.trim();
+        const email     = document.getElementById('signupEmail').value.trim();
+        const password  = document.getElementById('signupPassword').value;
+        const roleVal   = document.querySelector('input[name="role"]:checked')?.value || 'student';
+        const roleMap   = { student: 'User', fresher: 'User', professional: 'User', employer: 'Distributor' };
+
+        const payload = {
+          fullName: `${firstName} ${lastName}`,
+          email,
+          password,
+          phone,
+          role: roleMap[roleVal] || 'User',
+        };
+
+        try {
+          const regRes  = await fetch('/api/auth/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify(payload),
+          });
+          const regData = await regRes.json();
+          if (!regRes.ok) throw new Error(regData.message || 'Registration failed.');
+
+          if (regData.data?.token) {
+            localStorage.setItem('token', regData.data.token);
+            localStorage.setItem('user', JSON.stringify(regData.data));
+          }
+
+          step2Btn.classList.remove('loading');
+          step2Btn.disabled = false;
+
+          document.getElementById('step2Form').style.display = 'none';
+          document.getElementById('signupSteps').style.display = 'none';
+          document.getElementById('footerLink').style.display = 'none';
+
+          document.getElementById('welcomeName').textContent = firstName;
+          document.getElementById('signupSuccess').classList.add('show');
+          goToDone();
+
+        } catch (err) {
+          step2Btn.classList.remove('loading');
+          step2Btn.disabled = false;
+          if (typeof showToast === 'function') showToast(err.message || 'Registration failed. Please try again.', 'error');
+        }
+      });
+    }
+
+    /* ---- Social buttons ---- */
+    ['googleBtn', 'githubBtn'].forEach(id => {
+      const btn = document.getElementById(id);
+      if (!btn) return;
+      btn.addEventListener('click', () => {
+        const name = id === 'googleBtn' ? 'Google' : 'GitHub';
+        if (typeof showToast === 'function') {
+          showToast(`${name} OAuth coming soon!`, 'info');
+        }
+      });
+    });
+
+    /* ---- Phone live validation ---- */
+    const phoneEl = document.getElementById('phone');
+    if (phoneEl) {
+      phoneEl.addEventListener('blur', () => {
+        const v = phoneEl.value.trim();
+        if (v && !/^[\+\d\s\-()]{7,15}$/.test(v)) {
+          showError('phone', 'phoneError', 'Please enter a valid phone number.');
+        } else {
+          clearState('phone', 'phoneError');
+        }
+      });
+      phoneEl.addEventListener('input', () => clearState('phone', 'phoneError'));
+    }
+
+  })();
+  </script>
+
+</body>
+</html>

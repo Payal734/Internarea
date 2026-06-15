@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Builder — InternArea</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/darkmode.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/loaders.css">
+
+  <style>
+    /* ---- Layout ---- */
+    .rb-page {
+      min-height: 100vh;
+      background: var(--light-bg);
+    }
+    body.dark-mode .rb-page { background: var(--dark-bg); }
+
+    .rb-header {
+      background: linear-gradient(135deg,#0f172a,#1a3a34,#2d1b4e);
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .rb-header-inner {
+      max-width: 1280px; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    }
+    .rb-logo { font-family:'Outfit',sans-serif; font-weight:800; font-size:1.4rem;
+      background:linear-gradient(135deg,#14b8a6,#50C878);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+      text-decoration:none; display:flex; align-items:center; gap:0.5rem; }
+    .rb-header h1 { color:#fff; font-family:'Outfit',sans-serif; font-size:1.1rem; font-weight:600; margin:0; }
+    .rb-header-actions { display:flex; gap:0.625rem; flex-wrap:wrap; }
+
+    .rb-body {
+      max-width: 1280px; margin: 0 auto; padding: 1.5rem;
+      display: grid; grid-template-columns: 420px 1fr; gap: 1.5rem; align-items: start;
+    }
+    @media (max-width: 900px) { .rb-body { grid-template-columns: 1fr; } }
+
+    /* ---- Left Panel: Form ---- */
+    .rb-form-panel {
+      background: var(--light-card); border: 1px solid var(--border-light);
+      border-radius: 18px; padding: 1.5rem;
+      max-height: calc(100vh - 110px); overflow-y: auto; position: sticky; top: 90px;
+    }
+    body.dark-mode .rb-form-panel { background: var(--dark-surface); border-color: var(--border-dark); }
+
+    .rb-section-title {
+      font-family:'Outfit',sans-serif; font-size:1rem; font-weight:700;
+      color: var(--text-dark); margin: 0 0 1rem;
+      display:flex; align-items:center; gap:0.5rem;
+    }
+    body.dark-mode .rb-section-title { color:#e2e8f0; }
+    .rb-divider { height:1px; background:var(--border-light); margin:1.25rem 0; }
+    body.dark-mode .rb-divider { background:var(--border-dark); }
+
+    .rb-field { margin-bottom:0.875rem; }
+    .rb-label {
+      display:block; font-size:0.8rem; font-weight:600;
+      color:var(--text-dark); margin-bottom:0.3rem; font-family:'Poppins',sans-serif;
+    }
+    body.dark-mode .rb-label { color:#e2e8f0; }
+    .rb-input, .rb-textarea, .rb-select {
+      width:100%; padding:0.6rem 0.875rem;
+      border:1.5px solid var(--border-light); border-radius:10px;
+      font-family:'Poppins',sans-serif; font-size:0.875rem;
+      color:var(--text-dark); background:var(--light-bg);
+      transition:border-color 0.2s; outline:none; box-sizing:border-box;
+    }
+    body.dark-mode .rb-input, body.dark-mode .rb-textarea, body.dark-mode .rb-select {
+      background:var(--dark-bg); border-color:var(--border-dark); color:#e2e8f0;
+    }
+    .rb-input:focus, .rb-textarea:focus { border-color:var(--primary-teal); box-shadow:0 0 0 3px rgba(20,184,166,0.1); }
+    .rb-textarea { resize:vertical; min-height:80px; }
+    .rb-row-2 { display:grid; grid-template-columns:1fr 1fr; gap:0.625rem; }
+
+    /* Repeatable cards */
+    .rb-entry {
+      background:rgba(20,184,166,0.04); border:1px solid rgba(20,184,166,0.15);
+      border-radius:12px; padding:1rem; margin-bottom:0.75rem; position:relative;
+    }
+    body.dark-mode .rb-entry { background:rgba(20,184,166,0.06); }
+    .rb-entry-remove {
+      position:absolute; top:0.625rem; right:0.625rem;
+      background:none; border:none; color:var(--text-muted); font-size:1.1rem;
+      cursor:pointer; line-height:1; transition:color 0.2s;
+    }
+    .rb-entry-remove:hover { color:#ef4444; }
+
+    .rb-add-btn {
+      display:flex; align-items:center; gap:0.5rem;
+      padding:0.5rem 1rem; border:1.5px dashed rgba(20,184,166,0.4);
+      border-radius:10px; background:none; color:var(--primary-teal);
+      font-size:0.875rem; font-weight:600; cursor:pointer; font-family:inherit;
+      width:100%; justify-content:center; transition:all 0.2s;
+    }
+    .rb-add-btn:hover { background:rgba(20,184,166,0.06); border-color:var(--primary-teal); }
+
+    /* Template tabs */
+    .rb-templates { display:flex; gap:0.5rem; margin-bottom:1rem; flex-wrap:wrap; }
+    .rb-tpl-btn {
+      padding:0.4rem 0.875rem; border:1.5px solid var(--border-light);
+      border-radius:8px; background:none; font-size:0.8rem; font-weight:600;
+      cursor:pointer; font-family:inherit; color:var(--text-light); transition:all 0.2s;
+    }
+    body.dark-mode .rb-tpl-btn { border-color:var(--border-dark); color:rgba(255,255,255,0.5); }
+    .rb-tpl-btn.active, .rb-tpl-btn:hover {
+      border-color:var(--primary-teal); color:var(--primary-teal); background:rgba(20,184,166,0.06);
+    }
+
+    /* Skill pills row */
+    .skill-pills-wrap { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.4rem; }
+    .skill-pill {
+      display:inline-flex; align-items:center; gap:0.3rem;
+      background:rgba(20,184,166,0.1); color:var(--primary-teal);
+      border:1px solid rgba(20,184,166,0.25); border-radius:20px;
+      padding:0.2rem 0.625rem; font-size:0.78rem; font-weight:600;
+    }
+    .skill-pill button { background:none; border:none; cursor:pointer; color:inherit; font-size:0.9rem; padding:0; line-height:1; }
+    .skill-input-row { display:flex; gap:0.4rem; margin-top:0.5rem; }
+    .skill-input-row input { flex:1; }
+    .skill-input-row button { padding:0.55rem 0.875rem; border:none; border-radius:8px; background:var(--primary-teal); color:#fff; font-weight:600; cursor:pointer; font-family:inherit; font-size:0.875rem; white-space:nowrap; }
+
+    /* ---- Right Panel: Preview ---- */
+    .rb-preview-panel { position:sticky; top:90px; }
+    .rb-preview-toolbar {
+      display:flex; align-items:center; justify-content:space-between;
+      margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;
+    }
+    .rb-preview-label { font-size:0.875rem; font-weight:700; color:var(--text-light); }
+
+    /* Paper */
+    .resume-paper {
+      background:#fff; color:#1e293b;
+      box-shadow:0 4px 30px rgba(0,0,0,0.15);
+      border-radius:4px;
+      font-family:'Poppins',sans-serif;
+      line-height:1.5;
+      overflow:hidden;
+      /* A4 aspect */
+      min-height:842px;
+    }
+    /* Template: modern */
+    .resume-paper.tpl-modern .resume-sidebar {
+      background:linear-gradient(180deg,#14b8a6,#0f7a6f);
+      color:#fff; padding:2rem 1.25rem; min-width:160px; width:34%;
+      float:left; min-height:842px;
+    }
+    .resume-paper.tpl-modern .resume-main {
+      margin-left:34%; padding:2rem 1.5rem;
+    }
+    /* Template: classic */
+    .resume-paper.tpl-classic .resume-classic-header {
+      background:linear-gradient(135deg,#1e293b,#0f172a);
+      color:#fff; padding:1.5rem 2rem;
+    }
+    .resume-paper.tpl-classic .resume-main { padding:1.5rem 2rem; }
+    /* Template: minimal */
+    .resume-paper.tpl-minimal .resume-main { padding:2rem 2.5rem; }
+
+    /* Shared resume elements */
+    .r-name { font-family:'Outfit',sans-serif; font-weight:800; }
+    .r-section-heading {
+      font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:1.2px;
+      border-bottom:2px solid currentColor; padding-bottom:0.2rem; margin:1rem 0 0.5rem;
+    }
+    .r-entry { margin-bottom:0.75rem; }
+    .r-entry-title { font-weight:700; font-size:0.9rem; }
+    .r-entry-sub { font-size:0.8rem; opacity:0.7; margin-bottom:0.25rem; }
+    .r-entry-desc { font-size:0.8rem; opacity:0.85; white-space:pre-line; }
+    .r-contact-item { font-size:0.78rem; margin-bottom:0.3rem; display:flex; align-items:center; gap:0.4rem; }
+    .r-skill-tag {
+      display:inline-block; padding:2px 8px; border-radius:4px;
+      font-size:0.72rem; font-weight:600; margin:2px;
+    }
+
+    /* Print */
+    @media print {
+      body > *:not(.resume-paper-outer) { display:none !important; }
+      .resume-paper-outer { position:fixed;inset:0;z-index:99999; }
+      .resume-paper { box-shadow:none;border-radius:0;min-height:100vh; }
+    }
+
+    /* Buttons */
+    .btn-rb-primary {
+      padding:0.6rem 1.25rem; border:none; border-radius:10px;
+      background:linear-gradient(135deg,#14b8a6,#50C878);
+      color:#fff; font-weight:700; font-size:0.875rem;
+      cursor:pointer; font-family:inherit; display:flex; align-items:center; gap:0.4rem;
+      transition:all 0.2s; text-decoration:none;
+    }
+    .btn-rb-primary:hover { transform:translateY(-1px); box-shadow:0 4px 15px rgba(20,184,166,0.3); }
+    .btn-rb-secondary {
+      padding:0.6rem 1.25rem; border:1.5px solid var(--border-light);
+      border-radius:10px; background:none; color:var(--text-dark);
+      font-weight:600; font-size:0.875rem; cursor:pointer; font-family:inherit;
+      display:flex; align-items:center; gap:0.4rem; text-decoration:none; transition:all 0.2s;
+    }
+    body.dark-mode .btn-rb-secondary { border-color:var(--border-dark); color:#e2e8f0; }
+    .btn-rb-secondary:hover { border-color:var(--primary-teal); }
+  </style>
+</head>
+<body>
+
+  <!-- Page Loader -->
+  <div id="pageLoader" class="page-loader">
+    <div class="loader-logo">InternArea</div>
+    <div class="loader-ring"></div>
+    <div class="loader-dots"><div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div></div>
+  </div>
+  <div id="toastContainer" class="toast-container"></div>
+
+  <div class="rb-page">
+    <!-- Header -->
+    <div class="rb-header">
+      <div class="rb-header-inner">
+        <div style="display:flex;align-items:center;gap:1rem">
+          <a href="index-premium.html" class="rb-logo">
+            <svg width="24" height="24" viewBox="0 0 48 48"><defs><linearGradient id="rbLG" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#14b8a6"/><stop offset="100%" style="stop-color:#50C878"/></linearGradient></defs>
+            <path d="M24 4L40 12V28C40 37.9 24 44 24 44S8 37.9 8 28V12L24 4Z" fill="url(#rbLG)"/></svg>
+            InternArea
+          </a>
+          <h1>Resume Builder</h1>
+        </div>
+        <div class="rb-header-actions">
+          <a href="index-premium.html" class="btn-rb-secondary">← Back</a>
+          <button class="btn-rb-primary" id="downloadPdfBtn">⬇️ Download PDF</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="rb-body">
+
+      <!-- LEFT: Form -->
+      <div class="rb-form-panel">
+
+        <!-- Template chooser -->
+        <div class="rb-section-title">🎨 Choose Template</div>
+        <div class="rb-templates">
+          <button class="rb-tpl-btn active" data-tpl="modern">Modern</button>
+          <button class="rb-tpl-btn" data-tpl="classic">Classic</button>
+          <button class="rb-tpl-btn" data-tpl="minimal">Minimal</button>
+        </div>
+
+        <div class="rb-divider"></div>
+
+        <!-- Personal Info -->
+        <div class="rb-section-title">👤 Personal Information</div>
+        <div class="rb-row-2">
+          <div class="rb-field">
+            <label class="rb-label">First Name</label>
+            <input class="rb-input" id="rf-firstName" placeholder="Rahul">
+          </div>
+          <div class="rb-field">
+            <label class="rb-label">Last Name</label>
+            <input class="rb-input" id="rf-lastName" placeholder="Sharma">
+          </div>
+        </div>
+        <div class="rb-field">
+          <label class="rb-label">Job Title / Role</label>
+          <input class="rb-input" id="rf-role" placeholder="Full Stack Developer">
+        </div>
+        <div class="rb-row-2">
+          <div class="rb-field">
+            <label class="rb-label">Email</label>
+            <input class="rb-input" type="email" id="rf-email" placeholder="you@email.com">
+          </div>
+          <div class="rb-field">
+            <label class="rb-label">Phone</label>
+            <input class="rb-input" type="tel" id="rf-phone" placeholder="+91 98765 43210">
+          </div>
+        </div>
+        <div class="rb-row-2">
+          <div class="rb-field">
+            <label class="rb-label">City / Location</label>
+            <input class="rb-input" id="rf-city" placeholder="Mumbai, India">
+          </div>
+          <div class="rb-field">
+            <label class="rb-label">LinkedIn (URL)</label>
+            <input class="rb-input" id="rf-linkedin" placeholder="linkedin.com/in/...">
+          </div>
+        </div>
+        <div class="rb-field">
+          <label class="rb-label">GitHub / Portfolio</label>
+          <input class="rb-input" id="rf-portfolio" placeholder="github.com/username">
+        </div>
+        <div class="rb-field">
+          <label class="rb-label">Professional Summary</label>
+          <textarea class="rb-textarea" id="rf-summary" placeholder="Write a 2–3 sentence summary about yourself, your goals, and key achievements…"></textarea>
+        </div>
+
+        <div class="rb-divider"></div>
+
+        <!-- Experience -->
+        <div class="rb-section-title">💼 Work Experience</div>
+        <div id="expList"></div>
+        <button class="rb-add-btn" id="addExpBtn">+ Add Experience</button>
+
+        <div class="rb-divider"></div>
+
+        <!-- Education -->
+        <div class="rb-section-title">🎓 Education</div>
+        <div id="eduList"></div>
+        <button class="rb-add-btn" id="addEduBtn">+ Add Education</button>
+
+        <div class="rb-divider"></div>
+
+        <!-- Projects -->
+        <div class="rb-section-title">🚀 Projects</div>
+        <div id="projList"></div>
+        <button class="rb-add-btn" id="addProjBtn">+ Add Project</button>
+
+        <div class="rb-divider"></div>
+
+        <!-- Skills -->
+        <div class="rb-section-title">⚡ Skills</div>
+        <div id="skillPills" class="skill-pills-wrap"></div>
+        <div class="skill-input-row">
+          <input class="rb-input" id="skillInput" placeholder="e.g. React, Python…" style="margin-top:0.5rem">
+          <button id="addSkillBtn" style="margin-top:0.5rem">Add</button>
+        </div>
+
+        <div class="rb-divider"></div>
+
+        <!-- Achievements -->
+        <div class="rb-section-title">🏆 Achievements & Certifications</div>
+        <div id="achList"></div>
+        <button class="rb-add-btn" id="addAchBtn">+ Add Achievement</button>
+
+        <div style="height:2rem"></div>
+      </div>
+
+      <!-- RIGHT: Preview -->
+      <div class="rb-preview-panel">
+        <div class="rb-preview-toolbar">
+          <span class="rb-preview-label">Live Preview</span>
+          <div style="display:flex;gap:0.5rem">
+            <button class="btn-rb-secondary" id="printBtn">🖨️ Print</button>
+            <button class="btn-rb-primary" id="downloadPdfBtn2">⬇️ Download PDF</button>
+          </div>
+        </div>
+        <!-- Paper -->
+        <div class="resume-paper-outer">
+          <div class="resume-paper tpl-modern" id="resumePaper">
+            <!-- populated by JS -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/auth-state.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    /* ---- State ---- */
+    let data = {
+      firstName:'', lastName:'', role:'', email:'', phone:'',
+      city:'', linkedin:'', portfolio:'', summary:'',
+      skills:[], experience:[], education:[], projects:[], achievements:[],
+      template:'modern',
+    };
+
+    /* Auto-fill from localStorage user */
+    const storedUser = (() => { try { return JSON.parse(localStorage.getItem('user')); } catch { return null; } })();
+    if (storedUser) {
+      const parts = (storedUser.fullName || '').split(' ');
+      data.firstName = parts[0] || '';
+      data.lastName  = parts.slice(1).join(' ') || '';
+      data.email     = storedUser.email || '';
+    }
+
+    /* ---- Helpers ---- */
+    function esc(str) {
+      return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function getVal(id) { return (document.getElementById(id)||{}).value || ''; }
+
+    /* ---- Read form into data ---- */
+    function readForm() {
+      data.firstName = getVal('rf-firstName');
+      data.lastName  = getVal('rf-lastName');
+      data.role      = getVal('rf-role');
+      data.email     = getVal('rf-email');
+      data.phone     = getVal('rf-phone');
+      data.city      = getVal('rf-city');
+      data.linkedin  = getVal('rf-linkedin');
+      data.portfolio = getVal('rf-portfolio');
+      data.summary   = getVal('rf-summary');
+    }
+
+    /* ---- Render Preview ---- */
+    function renderPreview() {
+      readForm();
+      const paper = document.getElementById('resumePaper');
+      paper.className = `resume-paper tpl-${data.template}`;
+
+      const name     = [data.firstName, data.lastName].filter(Boolean).join(' ') || 'Your Name';
+      const contacts = [
+        data.email    && `✉ ${esc(data.email)}`,
+        data.phone    && `📞 ${esc(data.phone)}`,
+        data.city     && `📍 ${esc(data.city)}`,
+        data.linkedin && `🔗 ${esc(data.linkedin)}`,
+        data.portfolio&& `💻 ${esc(data.portfolio)}`,
+      ].filter(Boolean);
+
+      if (data.template === 'modern') {
+        paper.innerHTML = `
+          <div style="overflow:hidden">
+            <div class="resume-sidebar">
+              <div class="r-name" style="font-size:1.4rem;margin-bottom:0.25rem;color:#fff">${esc(name)}</div>
+              <div style="font-size:0.8rem;opacity:0.85;margin-bottom:1.25rem;color:#e0f7f4">${esc(data.role)}</div>
+              <div class="r-section-heading" style="color:#a7f3d0;border-color:#a7f3d0">Contact</div>
+              ${contacts.map(c=>`<div class="r-contact-item" style="color:#e0f7f4">${c}</div>`).join('')}
+              ${data.skills.length ? `
+                <div class="r-section-heading" style="color:#a7f3d0;border-color:#a7f3d0;margin-top:1rem">Skills</div>
+                <div>${data.skills.map(s=>`<span class="r-skill-tag" style="background:rgba(255,255,255,0.15);color:#fff">${esc(s)}</span>`).join('')}</div>
+              ` : ''}
+            </div>
+            <div class="resume-main">
+              ${data.summary ? `<div class="r-section-heading" style="color:#14b8a6;border-color:#14b8a6">Summary</div><p style="font-size:0.82rem;margin:0 0 0.5rem">${esc(data.summary)}</p>` : ''}
+              ${renderExp()}
+              ${renderEdu()}
+              ${renderProj()}
+              ${renderAch()}
+            </div>
+          </div>`;
+      } else if (data.template === 'classic') {
+        paper.innerHTML = `
+          <div class="resume-classic-header">
+            <div class="r-name" style="font-size:1.75rem;color:#fff">${esc(name)}</div>
+            <div style="font-size:0.9rem;color:rgba(255,255,255,0.75);margin-top:0.25rem">${esc(data.role)}</div>
+            <div style="display:flex;flex-wrap:wrap;gap:1rem;margin-top:0.75rem">
+              ${contacts.map(c=>`<span style="font-size:0.78rem;color:rgba(255,255,255,0.7)">${c}</span>`).join('')}
+            </div>
+          </div>
+          <div class="resume-main">
+            ${data.summary ? `<div class="r-section-heading" style="color:#1e293b;border-color:#1e293b">Professional Summary</div><p style="font-size:0.82rem;margin:0 0 0.5rem">${esc(data.summary)}</p>` : ''}
+            ${renderExp()}
+            ${renderEdu()}
+            ${data.skills.length ? `<div class="r-section-heading" style="color:#1e293b;border-color:#1e293b">Skills</div><div>${data.skills.map(s=>`<span class="r-skill-tag" style="background:#e2e8f0;color:#1e293b">${esc(s)}</span>`).join('')}</div>` : ''}
+            ${renderProj()}
+            ${renderAch()}
+          </div>`;
+      } else {
+        paper.innerHTML = `
+          <div class="resume-main" style="border-top:4px solid #14b8a6">
+            <div style="border-bottom:1px solid #e2e8f0;padding-bottom:1rem;margin-bottom:1rem">
+              <div class="r-name" style="font-size:2rem;color:#0f172a">${esc(name)}</div>
+              <div style="color:#64748b;font-size:0.9rem;margin:0.2rem 0">${esc(data.role)}</div>
+              <div style="display:flex;flex-wrap:wrap;gap:1rem;margin-top:0.5rem">
+                ${contacts.map(c=>`<span style="font-size:0.78rem;color:#94a3b8">${c}</span>`).join('')}
+              </div>
+            </div>
+            ${data.summary ? `<div class="r-section-heading" style="color:#14b8a6;border-color:#14b8a6">About Me</div><p style="font-size:0.82rem;margin:0 0 0.5rem">${esc(data.summary)}</p>` : ''}
+            ${renderExp()}
+            ${renderEdu()}
+            ${data.skills.length ? `<div class="r-section-heading" style="color:#14b8a6;border-color:#14b8a6">Skills</div><div style="margin-bottom:0.5rem">${data.skills.map(s=>`<span class="r-skill-tag" style="background:#f0fdf4;color:#0f766e;border:1px solid #a7f3d0">${esc(s)}</span>`).join('')}</div>` : ''}
+            ${renderProj()}
+            ${renderAch()}
+          </div>`;
+      }
+    }
+
+    function renderExp() {
+      if (!data.experience.length) return '';
+      return `<div class="r-section-heading" style="color:${data.template==='minimal'?'#14b8a6':'#1e293b'};border-color:${data.template==='minimal'?'#14b8a6':'#1e293b'}">Experience</div>
+        ${data.experience.map(e=>`<div class="r-entry">
+          <div class="r-entry-title">${esc(e.title)}</div>
+          <div class="r-entry-sub">${esc(e.company)}${e.duration?` · ${esc(e.duration)}`:''}${e.location?` · ${esc(e.location)}`:''}</div>
+          ${e.desc?`<div class="r-entry-desc">${esc(e.desc)}</div>`:''}
+        </div>`).join('')}`;
+    }
+
+    function renderEdu() {
+      if (!data.education.length) return '';
+      return `<div class="r-section-heading" style="color:${data.template==='minimal'?'#14b8a6':'#1e293b'};border-color:${data.template==='minimal'?'#14b8a6':'#1e293b'}">Education</div>
+        ${data.education.map(e=>`<div class="r-entry">
+          <div class="r-entry-title">${esc(e.degree)}</div>
+          <div class="r-entry-sub">${esc(e.school)}${e.year?` · ${esc(e.year)}`:''}${e.gpa?` · GPA: ${esc(e.gpa)}`:''}</div>
+        </div>`).join('')}`;
+    }
+
+    function renderProj() {
+      if (!data.projects.length) return '';
+      return `<div class="r-section-heading" style="color:${data.template==='minimal'?'#14b8a6':'#1e293b'};border-color:${data.template==='minimal'?'#14b8a6':'#1e293b'}">Projects</div>
+        ${data.projects.map(p=>`<div class="r-entry">
+          <div class="r-entry-title">${esc(p.name)}${p.tech?` <span style="font-weight:400;opacity:0.6">— ${esc(p.tech)}</span>`:''}</div>
+          ${p.desc?`<div class="r-entry-desc">${esc(p.desc)}</div>`:''}
+          ${p.link?`<div style="font-size:0.75rem;color:#14b8a6">${esc(p.link)}</div>`:''}
+        </div>`).join('')}`;
+    }
+
+    function renderAch() {
+      if (!data.achievements.length) return '';
+      return `<div class="r-section-heading" style="color:${data.template==='minimal'?'#14b8a6':'#1e293b'};border-color:${data.template==='minimal'?'#14b8a6':'#1e293b'}">Achievements & Certifications</div>
+        <ul style="margin:0;padding-left:1.25rem;font-size:0.82rem">
+          ${data.achievements.map(a=>`<li style="margin-bottom:0.25rem">${esc(a.text)}</li>`).join('')}
+        </ul>`;
+    }
+
+    /* ---- Dynamic list builders ---- */
+    function makeExpEntry(idx) {
+      return `<div class="rb-entry" id="exp-${idx}">
+        <button class="rb-entry-remove" onclick="removeEntry('experience',${idx})">✕</button>
+        <div class="rb-row-2">
+          <div class="rb-field"><label class="rb-label">Job Title</label><input class="rb-input" data-exp="${idx}" data-key="title" placeholder="Software Engineer"></div>
+          <div class="rb-field"><label class="rb-label">Company</label><input class="rb-input" data-exp="${idx}" data-key="company" placeholder="Google"></div>
+        </div>
+        <div class="rb-row-2">
+          <div class="rb-field"><label class="rb-label">Duration</label><input class="rb-input" data-exp="${idx}" data-key="duration" placeholder="Jun 2023 – Present"></div>
+          <div class="rb-field"><label class="rb-label">Location</label><input class="rb-input" data-exp="${idx}" data-key="location" placeholder="Remote / Mumbai"></div>
+        </div>
+        <div class="rb-field"><label class="rb-label">Description</label><textarea class="rb-textarea" data-exp="${idx}" data-key="desc" placeholder="• Built X, resulting in Y...&#10;• Led a team of Z..."></textarea></div>
+      </div>`;
+    }
+
+    function makeEduEntry(idx) {
+      return `<div class="rb-entry" id="edu-${idx}">
+        <button class="rb-entry-remove" onclick="removeEntry('education',${idx})">✕</button>
+        <div class="rb-field"><label class="rb-label">Degree / Course</label><input class="rb-input" data-edu="${idx}" data-key="degree" placeholder="B.Tech Computer Science"></div>
+        <div class="rb-row-2">
+          <div class="rb-field"><label class="rb-label">College / University</label><input class="rb-input" data-edu="${idx}" data-key="school" placeholder="IIT Delhi"></div>
+          <div class="rb-field"><label class="rb-label">Year</label><input class="rb-input" data-edu="${idx}" data-key="year" placeholder="2020–2024"></div>
+        </div>
+        <div class="rb-field"><label class="rb-label">CGPA / Grade (optional)</label><input class="rb-input" data-edu="${idx}" data-key="gpa" placeholder="8.5 / 10"></div>
+      </div>`;
+    }
+
+    function makeProjEntry(idx) {
+      return `<div class="rb-entry" id="proj-${idx}">
+        <button class="rb-entry-remove" onclick="removeEntry('projects',${idx})">✕</button>
+        <div class="rb-row-2">
+          <div class="rb-field"><label class="rb-label">Project Name</label><input class="rb-input" data-proj="${idx}" data-key="name" placeholder="InternTrack App"></div>
+          <div class="rb-field"><label class="rb-label">Technologies</label><input class="rb-input" data-proj="${idx}" data-key="tech" placeholder="React, Node.js, MongoDB"></div>
+        </div>
+        <div class="rb-field"><label class="rb-label">Description</label><textarea class="rb-textarea" data-proj="${idx}" data-key="desc" placeholder="What the project does and your role…"></textarea></div>
+        <div class="rb-field"><label class="rb-label">Link (optional)</label><input class="rb-input" data-proj="${idx}" data-key="link" placeholder="github.com/username/project"></div>
+      </div>`;
+    }
+
+    function makeAchEntry(idx) {
+      return `<div class="rb-entry" id="ach-${idx}">
+        <button class="rb-entry-remove" onclick="removeEntry('achievements',${idx})">✕</button>
+        <div class="rb-field"><input class="rb-input" data-ach="${idx}" data-key="text" placeholder="Google Cloud Certified – Associate Cloud Engineer, 2023"></div>
+      </div>`;
+    }
+
+    function addEntry(type) {
+      let list, makeHtml, obj;
+      if (type === 'experience') {
+        list = document.getElementById('expList');
+        data.experience.push({title:'',company:'',duration:'',location:'',desc:''});
+        obj = makeExpEntry;
+      } else if (type === 'education') {
+        list = document.getElementById('eduList');
+        data.education.push({degree:'',school:'',year:'',gpa:''});
+        obj = makeEduEntry;
+      } else if (type === 'projects') {
+        list = document.getElementById('projList');
+        data.projects.push({name:'',tech:'',desc:'',link:''});
+        obj = makeProjEntry;
+      } else {
+        list = document.getElementById('achList');
+        data.achievements.push({text:''});
+        obj = makeAchEntry;
+      }
+      const idx = data[type].length - 1;
+      const div = document.createElement('div');
+      div.innerHTML = obj(idx);
+      list.appendChild(div.firstElementChild);
+      bindEntryInputs(type, idx);
+    }
+
+    window.removeEntry = function(type, idx) {
+      data[type].splice(idx, 1);
+      rebuildList(type);
+      renderPreview();
+    };
+
+    function rebuildList(type) {
+      let list, makeHtml;
+      if (type === 'experience') { list = document.getElementById('expList'); makeHtml = makeExpEntry; }
+      else if (type === 'education') { list = document.getElementById('eduList'); makeHtml = makeEduEntry; }
+      else if (type === 'projects') { list = document.getElementById('projList'); makeHtml = makeProjEntry; }
+      else { list = document.getElementById('achList'); makeHtml = makeAchEntry; }
+      list.innerHTML = '';
+      data[type].forEach((_, i) => {
+        const div = document.createElement('div');
+        div.innerHTML = makeHtml(i);
+        const entry = div.firstElementChild;
+        list.appendChild(entry);
+        /* re-fill values */
+        entry.querySelectorAll('[data-key]').forEach(el => {
+          const key = el.dataset.key;
+          el.value = data[type][i][key] || '';
+        });
+        bindEntryInputs(type, i);
+      });
+    }
+
+    function bindEntryInputs(type, idx) {
+      const attrMap = {experience:'data-exp',education:'data-edu',projects:'data-proj',achievements:'data-ach'};
+      const attr    = attrMap[type];
+      document.querySelectorAll(`[${attr}="${idx}"]`).forEach(el => {
+        el.addEventListener('input', () => {
+          data[type][idx][el.dataset.key] = el.value;
+          renderPreview();
+        });
+      });
+    }
+
+    /* ---- Skills ---- */
+    function renderSkillPills() {
+      const wrap = document.getElementById('skillPills');
+      wrap.innerHTML = data.skills.map((s,i) =>
+        `<span class="skill-pill">${esc(s)}<button onclick="removeSkill(${i})" title="Remove">✕</button></span>`
+      ).join('');
+    }
+
+    window.removeSkill = function(i) {
+      data.skills.splice(i,1);
+      renderSkillPills();
+      renderPreview();
+    };
+
+    function addSkill() {
+      const inp = document.getElementById('skillInput');
+      const val = inp.value.trim();
+      if (!val) return;
+      /* split by comma */
+      val.split(',').map(s=>s.trim()).filter(Boolean).forEach(s => {
+        if (!data.skills.includes(s)) data.skills.push(s);
+      });
+      inp.value = '';
+      renderSkillPills();
+      renderPreview();
+    }
+
+    document.getElementById('addSkillBtn').addEventListener('click', addSkill);
+    document.getElementById('skillInput').addEventListener('keydown', e => {
+      if (e.key === 'Enter') { e.preventDefault(); addSkill(); }
+    });
+
+    /* ---- Template switcher ---- */
+    document.querySelectorAll('.rb-tpl-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.rb-tpl-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        data.template = btn.dataset.tpl;
+        renderPreview();
+      });
+    });
+
+    /* ---- Add buttons ---- */
+    document.getElementById('addExpBtn').addEventListener('click',  () => addEntry('experience'));
+    document.getElementById('addEduBtn').addEventListener('click',  () => addEntry('education'));
+    document.getElementById('addProjBtn').addEventListener('click', () => addEntry('projects'));
+    document.getElementById('addAchBtn').addEventListener('click',  () => addEntry('achievements'));
+
+    /* ---- Live update on personal fields ---- */
+    ['rf-firstName','rf-lastName','rf-role','rf-email','rf-phone','rf-city','rf-linkedin','rf-portfolio','rf-summary'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('input', renderPreview);
+    });
+
+    /* ---- Print / Download ---- */
+    function printResume() {
+      const paper = document.getElementById('resumePaper');
+      const win = window.open('','_blank');
+      win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Resume</title>
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+        <style>
+          *{margin:0;padding:0;box-sizing:border-box}
+          body{font-family:'Poppins',sans-serif;color:#1e293b;background:#fff}
+          .resume-paper{min-height:100vh}
+          ${document.querySelector('style[data-resume]') ? document.querySelector('style[data-resume]').textContent : ''}
+        </style>
+        <style>${Array.from(document.styleSheets).map(ss=>{try{return Array.from(ss.cssRules).map(r=>r.cssText).join('');}catch{return '';}}).join('')}</style>
+      </head><body>${paper.outerHTML}</body></html>`);
+      win.document.close();
+      setTimeout(()=>{ win.print(); }, 800);
+    }
+
+    ['downloadPdfBtn','downloadPdfBtn2'].forEach(id => {
+      document.getElementById(id)?.addEventListener('click', printResume);
+    });
+    document.getElementById('printBtn').addEventListener('click', printResume);
+
+    /* ---- Auto-fill from user ---- */
+    if (storedUser) {
+      document.getElementById('rf-firstName').value = data.firstName;
+      document.getElementById('rf-lastName').value  = data.lastName;
+      document.getElementById('rf-email').value     = data.email;
+    }
+
+    /* ---- Initial defaults (sample data) ---- */
+    function loadSample() {
+      document.getElementById('rf-role').value    = 'Full Stack Developer';
+      document.getElementById('rf-city').value    = 'Mumbai, India';
+      document.getElementById('rf-summary').value = 'Passionate developer with expertise in React, Node.js, and cloud technologies. Proven track record of building scalable web applications and leading cross-functional teams.';
+      data.skills = ['React', 'Node.js', 'JavaScript', 'Python', 'MongoDB', 'AWS', 'Git'];
+      renderSkillPills();
+      addEntry('education');
+      setTimeout(()=>{
+        document.querySelector('[data-edu="0"][data-key="degree"]').value  = 'B.Tech Computer Science';
+        document.querySelector('[data-edu="0"][data-key="school"]').value  = 'IIT Delhi';
+        document.querySelector('[data-edu="0"][data-key="year"]').value    = '2020–2024';
+        document.querySelector('[data-edu="0"][data-key="gpa"]').value     = '8.7 / 10';
+        data.education[0] = {degree:'B.Tech Computer Science',school:'IIT Delhi',year:'2020–2024',gpa:'8.7 / 10'};
+        addEntry('experience');
+        setTimeout(()=>{
+          document.querySelector('[data-exp="0"][data-key="title"]').value    = 'Frontend Intern';
+          document.querySelector('[data-exp="0"][data-key="company"]').value  = 'Startup XYZ';
+          document.querySelector('[data-exp="0"][data-key="duration"]').value = 'May 2023 – Aug 2023';
+          document.querySelector('[data-exp="0"][data-key="location"]').value = 'Remote';
+          document.querySelector('[data-exp="0"][data-key="desc"]').value     = '• Built 5 reusable React components, reducing dev time by 30%\n• Integrated REST APIs and improved page load speed by 40%';
+          data.experience[0] = {title:'Frontend Intern',company:'Startup XYZ',duration:'May 2023 – Aug 2023',location:'Remote',desc:'• Built 5 reusable React components, reducing dev time by 30%\n• Integrated REST APIs and improved page load speed by 40%'};
+          renderPreview();
+        }, 50);
+      }, 50);
+    }
+
+    if (!storedUser) loadSample();
+    renderPreview();
+  })();
+  </script>
+</body>
+</html>
